@@ -36,36 +36,43 @@
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblSuperTitle = new System.Windows.Forms.Label();
             this.tabQuizMode = new System.Windows.Forms.TabPage();
-            this.btnGrandmaster = new System.Windows.Forms.Button();
-            this.btnVeteran = new System.Windows.Forms.Button();
+            this.flwQuizModes = new System.Windows.Forms.FlowLayoutPanel();
             this.btnRookie = new System.Windows.Forms.Button();
+            this.btnVeteran = new System.Windows.Forms.Button();
+            this.btnGrandmaster = new System.Windows.Forms.Button();
             this.lblSelectInstruction = new System.Windows.Forms.Label();
             this.tabQuestion = new System.Windows.Forms.TabPage();
+            this.flwTopRowControls = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblQuestionCount = new System.Windows.Forms.Label();
+            this.lblElapsedTime = new System.Windows.Forms.Label();
+            this.lblPiPoints = new System.Windows.Forms.Label();
             this.btnContinue = new System.Windows.Forms.Button();
             this.btnOptionFour = new System.Windows.Forms.Button();
             this.btnOptionThree = new System.Windows.Forms.Button();
             this.btnOptionTwo = new System.Windows.Forms.Button();
             this.btnOptionOne = new System.Windows.Forms.Button();
-            this.lblPiPoints = new System.Windows.Forms.Label();
-            this.lblElapsedTime = new System.Windows.Forms.Label();
-            this.lblQuestionCount = new System.Windows.Forms.Label();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.tabEndScreen = new System.Windows.Forms.TabPage();
-            this.lblLeaderboardPos = new System.Windows.Forms.Label();
+            this.flwStatsLabels = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTotalPiPoints = new System.Windows.Forms.Label();
+            this.lblRankText = new System.Windows.Forms.Label();
+            this.lblRank = new System.Windows.Forms.Label();
+            this.lblPiScore = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.dgvLeaderboard = new System.Windows.Forms.DataGridView();
             this.lblCongrats = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblAccuracy = new System.Windows.Forms.Label();
-            this.flwQuizModes = new System.Windows.Forms.FlowLayoutPanel();
+            this.flwStatsValues = new System.Windows.Forms.FlowLayoutPanel();
             this.tbcCore.SuspendLayout();
             this.tabWelcom.SuspendLayout();
             this.tabQuizMode.SuspendLayout();
-            this.tabQuestion.SuspendLayout();
-            this.tabEndScreen.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvLeaderboard)).BeginInit();
             this.flwQuizModes.SuspendLayout();
+            this.tabQuestion.SuspendLayout();
+            this.flwTopRowControls.SuspendLayout();
+            this.tabEndScreen.SuspendLayout();
+            this.flwStatsLabels.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLeaderboard)).BeginInit();
+            this.flwStatsValues.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbcCore
@@ -102,7 +109,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(391, 271);
+            this.lblUsername.Location = new System.Drawing.Point(409, 315);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(106, 23);
             this.lblUsername.TabIndex = 4;
@@ -113,7 +120,7 @@
             this.btnStartGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(221)))));
             this.btnStartGame.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(226)))), ((int)(((byte)(235)))));
             this.btnStartGame.FlatAppearance.BorderSize = 0;
-            this.btnStartGame.Location = new System.Drawing.Point(486, 327);
+            this.btnStartGame.Location = new System.Drawing.Point(479, 359);
             this.btnStartGame.Name = "btnStartGame";
             this.btnStartGame.Size = new System.Drawing.Size(120, 32);
             this.btnStartGame.TabIndex = 3;
@@ -122,27 +129,27 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(506, 268);
+            this.textBox1.Location = new System.Drawing.Point(521, 312);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 30);
+            this.textBox1.Size = new System.Drawing.Size(154, 30);
             this.textBox1.TabIndex = 2;
             // 
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(488, 199);
+            this.lblWelcome.Font = new System.Drawing.Font("Bahnschrift SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Location = new System.Drawing.Point(459, 105);
             this.lblWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(102, 25);
+            this.lblWelcome.Size = new System.Drawing.Size(158, 33);
             this.lblWelcome.TabIndex = 1;
-            this.lblWelcome.Text = "Welcome!";
+            this.lblWelcome.Text = "Welcome To";
             // 
             // lblSuperTitle
             // 
             this.lblSuperTitle.AutoSize = true;
             this.lblSuperTitle.Font = new System.Drawing.Font("Bahnschrift", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSuperTitle.Location = new System.Drawing.Point(368, 96);
+            this.lblSuperTitle.Location = new System.Drawing.Point(378, 138);
             this.lblSuperTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSuperTitle.Name = "lblSuperTitle";
             this.lblSuperTitle.Size = new System.Drawing.Size(320, 77);
@@ -163,29 +170,15 @@
             this.tabQuizMode.TabIndex = 1;
             this.tabQuizMode.Text = "Select Mode";
             // 
-            // btnGrandmaster
+            // flwQuizModes
             // 
-            this.btnGrandmaster.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(155)))), ((int)(((byte)(147)))));
-            this.btnGrandmaster.Font = new System.Drawing.Font("Bahnschrift", 14.25F);
-            this.btnGrandmaster.Location = new System.Drawing.Point(400, 20);
-            this.btnGrandmaster.Margin = new System.Windows.Forms.Padding(20);
-            this.btnGrandmaster.Name = "btnGrandmaster";
-            this.btnGrandmaster.Size = new System.Drawing.Size(150, 60);
-            this.btnGrandmaster.TabIndex = 3;
-            this.btnGrandmaster.Text = "Grandmaster";
-            this.btnGrandmaster.UseVisualStyleBackColor = false;
-            // 
-            // btnVeteran
-            // 
-            this.btnVeteran.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(226)))), ((int)(((byte)(235)))));
-            this.btnVeteran.Font = new System.Drawing.Font("Bahnschrift", 14.25F);
-            this.btnVeteran.Location = new System.Drawing.Point(210, 20);
-            this.btnVeteran.Margin = new System.Windows.Forms.Padding(20);
-            this.btnVeteran.Name = "btnVeteran";
-            this.btnVeteran.Size = new System.Drawing.Size(150, 60);
-            this.btnVeteran.TabIndex = 2;
-            this.btnVeteran.Text = "Veteran";
-            this.btnVeteran.UseVisualStyleBackColor = false;
+            this.flwQuizModes.Controls.Add(this.btnRookie);
+            this.flwQuizModes.Controls.Add(this.btnVeteran);
+            this.flwQuizModes.Controls.Add(this.btnGrandmaster);
+            this.flwQuizModes.Location = new System.Drawing.Point(253, 225);
+            this.flwQuizModes.Name = "flwQuizModes";
+            this.flwQuizModes.Size = new System.Drawing.Size(570, 101);
+            this.flwQuizModes.TabIndex = 4;
             // 
             // btnRookie
             // 
@@ -199,11 +192,35 @@
             this.btnRookie.Text = "Rookie";
             this.btnRookie.UseVisualStyleBackColor = false;
             // 
+            // btnVeteran
+            // 
+            this.btnVeteran.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(226)))), ((int)(((byte)(235)))));
+            this.btnVeteran.Font = new System.Drawing.Font("Bahnschrift", 14.25F);
+            this.btnVeteran.Location = new System.Drawing.Point(210, 20);
+            this.btnVeteran.Margin = new System.Windows.Forms.Padding(20);
+            this.btnVeteran.Name = "btnVeteran";
+            this.btnVeteran.Size = new System.Drawing.Size(150, 60);
+            this.btnVeteran.TabIndex = 2;
+            this.btnVeteran.Text = "Veteran";
+            this.btnVeteran.UseVisualStyleBackColor = false;
+            // 
+            // btnGrandmaster
+            // 
+            this.btnGrandmaster.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(155)))), ((int)(((byte)(147)))));
+            this.btnGrandmaster.Font = new System.Drawing.Font("Bahnschrift", 14.25F);
+            this.btnGrandmaster.Location = new System.Drawing.Point(400, 20);
+            this.btnGrandmaster.Margin = new System.Windows.Forms.Padding(20);
+            this.btnGrandmaster.Name = "btnGrandmaster";
+            this.btnGrandmaster.Size = new System.Drawing.Size(150, 60);
+            this.btnGrandmaster.TabIndex = 3;
+            this.btnGrandmaster.Text = "Grandmaster";
+            this.btnGrandmaster.UseVisualStyleBackColor = false;
+            // 
             // lblSelectInstruction
             // 
             this.lblSelectInstruction.AutoSize = true;
             this.lblSelectInstruction.Font = new System.Drawing.Font("Bahnschrift", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectInstruction.Location = new System.Drawing.Point(406, 107);
+            this.lblSelectInstruction.Location = new System.Drawing.Point(427, 143);
             this.lblSelectInstruction.Name = "lblSelectInstruction";
             this.lblSelectInstruction.Size = new System.Drawing.Size(222, 33);
             this.lblSelectInstruction.TabIndex = 0;
@@ -212,14 +229,12 @@
             // tabQuestion
             // 
             this.tabQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
+            this.tabQuestion.Controls.Add(this.flwTopRowControls);
             this.tabQuestion.Controls.Add(this.btnContinue);
             this.tabQuestion.Controls.Add(this.btnOptionFour);
             this.tabQuestion.Controls.Add(this.btnOptionThree);
             this.tabQuestion.Controls.Add(this.btnOptionTwo);
             this.tabQuestion.Controls.Add(this.btnOptionOne);
-            this.tabQuestion.Controls.Add(this.lblPiPoints);
-            this.tabQuestion.Controls.Add(this.lblElapsedTime);
-            this.tabQuestion.Controls.Add(this.lblQuestionCount);
             this.tabQuestion.Controls.Add(this.lblQuestion);
             this.tabQuestion.Font = new System.Drawing.Font("Bahnschrift", 14.25F);
             this.tabQuestion.Location = new System.Drawing.Point(4, 27);
@@ -229,10 +244,49 @@
             this.tabQuestion.TabIndex = 2;
             this.tabQuestion.Text = "Question";
             // 
+            // flwTopRowControls
+            // 
+            this.flwTopRowControls.Controls.Add(this.lblQuestionCount);
+            this.flwTopRowControls.Controls.Add(this.lblElapsedTime);
+            this.flwTopRowControls.Controls.Add(this.lblPiPoints);
+            this.flwTopRowControls.Location = new System.Drawing.Point(62, 20);
+            this.flwTopRowControls.Name = "flwTopRowControls";
+            this.flwTopRowControls.Size = new System.Drawing.Size(952, 28);
+            this.flwTopRowControls.TabIndex = 10;
+            // 
+            // lblQuestionCount
+            // 
+            this.lblQuestionCount.AutoSize = true;
+            this.lblQuestionCount.Location = new System.Drawing.Point(3, 0);
+            this.lblQuestionCount.Name = "lblQuestionCount";
+            this.lblQuestionCount.Size = new System.Drawing.Size(40, 23);
+            this.lblQuestionCount.TabIndex = 2;
+            this.lblQuestionCount.Text = "1/10";
+            // 
+            // lblElapsedTime
+            // 
+            this.lblElapsedTime.AutoSize = true;
+            this.lblElapsedTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(89)))), ((int)(((byte)(102)))));
+            this.lblElapsedTime.Location = new System.Drawing.Point(446, 0);
+            this.lblElapsedTime.Margin = new System.Windows.Forms.Padding(400, 0, 400, 0);
+            this.lblElapsedTime.Name = "lblElapsedTime";
+            this.lblElapsedTime.Size = new System.Drawing.Size(50, 23);
+            this.lblElapsedTime.TabIndex = 3;
+            this.lblElapsedTime.Text = "01:30";
+            // 
+            // lblPiPoints
+            // 
+            this.lblPiPoints.AutoSize = true;
+            this.lblPiPoints.Location = new System.Drawing.Point(899, 0);
+            this.lblPiPoints.Name = "lblPiPoints";
+            this.lblPiPoints.Size = new System.Drawing.Size(49, 23);
+            this.lblPiPoints.TabIndex = 4;
+            this.lblPiPoints.Text = "100π";
+            // 
             // btnContinue
             // 
             this.btnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(226)))), ((int)(((byte)(235)))));
-            this.btnContinue.Location = new System.Drawing.Point(134, 437);
+            this.btnContinue.Location = new System.Drawing.Point(142, 463);
             this.btnContinue.Name = "btnContinue";
             this.btnContinue.Size = new System.Drawing.Size(773, 34);
             this.btnContinue.TabIndex = 9;
@@ -243,7 +297,7 @@
             // 
             this.btnOptionFour.BackColor = System.Drawing.Color.Transparent;
             this.btnOptionFour.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionFour.Location = new System.Drawing.Point(557, 317);
+            this.btnOptionFour.Location = new System.Drawing.Point(565, 317);
             this.btnOptionFour.Name = "btnOptionFour";
             this.btnOptionFour.Size = new System.Drawing.Size(350, 90);
             this.btnOptionFour.TabIndex = 8;
@@ -254,7 +308,7 @@
             // 
             this.btnOptionThree.BackColor = System.Drawing.Color.Transparent;
             this.btnOptionThree.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionThree.Location = new System.Drawing.Point(134, 317);
+            this.btnOptionThree.Location = new System.Drawing.Point(142, 317);
             this.btnOptionThree.Name = "btnOptionThree";
             this.btnOptionThree.Size = new System.Drawing.Size(350, 90);
             this.btnOptionThree.TabIndex = 7;
@@ -265,7 +319,7 @@
             // 
             this.btnOptionTwo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(155)))), ((int)(((byte)(147)))));
             this.btnOptionTwo.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionTwo.Location = new System.Drawing.Point(557, 192);
+            this.btnOptionTwo.Location = new System.Drawing.Point(565, 192);
             this.btnOptionTwo.Name = "btnOptionTwo";
             this.btnOptionTwo.Size = new System.Drawing.Size(350, 90);
             this.btnOptionTwo.TabIndex = 6;
@@ -276,46 +330,18 @@
             // 
             this.btnOptionOne.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(242)))), ((int)(((byte)(230)))));
             this.btnOptionOne.Font = new System.Drawing.Font("Bahnschrift SemiBold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOptionOne.Location = new System.Drawing.Point(134, 192);
+            this.btnOptionOne.Location = new System.Drawing.Point(142, 192);
             this.btnOptionOne.Name = "btnOptionOne";
             this.btnOptionOne.Size = new System.Drawing.Size(350, 90);
             this.btnOptionOne.TabIndex = 5;
             this.btnOptionOne.Text = "Option";
             this.btnOptionOne.UseVisualStyleBackColor = false;
             // 
-            // lblPiPoints
-            // 
-            this.lblPiPoints.AutoSize = true;
-            this.lblPiPoints.Location = new System.Drawing.Point(939, 29);
-            this.lblPiPoints.Name = "lblPiPoints";
-            this.lblPiPoints.Size = new System.Drawing.Size(49, 23);
-            this.lblPiPoints.TabIndex = 4;
-            this.lblPiPoints.Text = "100π";
-            // 
-            // lblElapsedTime
-            // 
-            this.lblElapsedTime.AutoSize = true;
-            this.lblElapsedTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(89)))), ((int)(((byte)(102)))));
-            this.lblElapsedTime.Location = new System.Drawing.Point(490, 29);
-            this.lblElapsedTime.Name = "lblElapsedTime";
-            this.lblElapsedTime.Size = new System.Drawing.Size(50, 23);
-            this.lblElapsedTime.TabIndex = 3;
-            this.lblElapsedTime.Text = "01:30";
-            // 
-            // lblQuestionCount
-            // 
-            this.lblQuestionCount.AutoSize = true;
-            this.lblQuestionCount.Location = new System.Drawing.Point(26, 29);
-            this.lblQuestionCount.Name = "lblQuestionCount";
-            this.lblQuestionCount.Size = new System.Drawing.Size(40, 23);
-            this.lblQuestionCount.TabIndex = 2;
-            this.lblQuestionCount.Text = "1/10";
-            // 
             // lblQuestion
             // 
             this.lblQuestion.AutoSize = true;
             this.lblQuestion.Font = new System.Drawing.Font("Bahnschrift", 20.25F, System.Drawing.FontStyle.Bold);
-            this.lblQuestion.Location = new System.Drawing.Point(396, 111);
+            this.lblQuestion.Location = new System.Drawing.Point(417, 95);
             this.lblQuestion.Name = "lblQuestion";
             this.lblQuestion.Size = new System.Drawing.Size(243, 33);
             this.lblQuestion.TabIndex = 1;
@@ -324,12 +350,11 @@
             // tabEndScreen
             // 
             this.tabEndScreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
-            this.tabEndScreen.Controls.Add(this.lblLeaderboardPos);
-            this.tabEndScreen.Controls.Add(this.lblTotalPiPoints);
+            this.tabEndScreen.Controls.Add(this.flwStatsValues);
+            this.tabEndScreen.Controls.Add(this.flwStatsLabels);
             this.tabEndScreen.Controls.Add(this.btnStart);
             this.tabEndScreen.Controls.Add(this.dgvLeaderboard);
             this.tabEndScreen.Controls.Add(this.lblCongrats);
-            this.tabEndScreen.Controls.Add(this.label1);
             this.tabEndScreen.Controls.Add(this.lblAccuracy);
             this.tabEndScreen.Font = new System.Drawing.Font("Bahnschrift", 14.25F);
             this.tabEndScreen.Location = new System.Drawing.Point(4, 27);
@@ -339,28 +364,62 @@
             this.tabEndScreen.TabIndex = 3;
             this.tabEndScreen.Text = "Congrats";
             // 
-            // lblLeaderboardPos
+            // flwStatsLabels
             // 
-            this.lblLeaderboardPos.AutoSize = true;
-            this.lblLeaderboardPos.Location = new System.Drawing.Point(552, 239);
-            this.lblLeaderboardPos.Name = "lblLeaderboardPos";
-            this.lblLeaderboardPos.Size = new System.Drawing.Size(190, 23);
-            this.lblLeaderboardPos.TabIndex = 5;
-            this.lblLeaderboardPos.Text = "Leaderboard Position";
+            this.flwStatsLabels.Controls.Add(this.lblTotalPiPoints);
+            this.flwStatsLabels.Controls.Add(this.lblRankText);
+            this.flwStatsLabels.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flwStatsLabels.Location = new System.Drawing.Point(692, 235);
+            this.flwStatsLabels.Name = "flwStatsLabels";
+            this.flwStatsLabels.Size = new System.Drawing.Size(139, 62);
+            this.flwStatsLabels.TabIndex = 8;
             // 
             // lblTotalPiPoints
             // 
             this.lblTotalPiPoints.AutoSize = true;
-            this.lblTotalPiPoints.Location = new System.Drawing.Point(553, 205);
+            this.lblTotalPiPoints.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPiPoints.Location = new System.Drawing.Point(3, 5);
+            this.lblTotalPiPoints.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.lblTotalPiPoints.Name = "lblTotalPiPoints";
-            this.lblTotalPiPoints.Size = new System.Drawing.Size(174, 23);
+            this.lblTotalPiPoints.Size = new System.Drawing.Size(130, 23);
             this.lblTotalPiPoints.TabIndex = 4;
-            this.lblTotalPiPoints.Text = "Total Pi Score: 100π";
+            this.lblTotalPiPoints.Text = "Total Pi Score:";
+            // 
+            // lblRankText
+            // 
+            this.lblRankText.AutoSize = true;
+            this.lblRankText.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRankText.Location = new System.Drawing.Point(3, 33);
+            this.lblRankText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblRankText.Name = "lblRankText";
+            this.lblRankText.Size = new System.Drawing.Size(57, 23);
+            this.lblRankText.TabIndex = 5;
+            this.lblRankText.Text = "Rank:";
+            // 
+            // lblRank
+            // 
+            this.lblRank.AutoSize = true;
+            this.lblRank.Location = new System.Drawing.Point(3, 33);
+            this.lblRank.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblRank.Name = "lblRank";
+            this.lblRank.Size = new System.Drawing.Size(32, 23);
+            this.lblRank.TabIndex = 7;
+            this.lblRank.Text = "#2";
+            // 
+            // lblPiScore
+            // 
+            this.lblPiScore.AutoSize = true;
+            this.lblPiScore.Location = new System.Drawing.Point(3, 5);
+            this.lblPiScore.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblPiScore.Name = "lblPiScore";
+            this.lblPiScore.Size = new System.Drawing.Size(49, 23);
+            this.lblPiScore.TabIndex = 6;
+            this.lblPiScore.Text = "100π";
             // 
             // btnStart
             // 
             this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(221)))));
-            this.btnStart.Location = new System.Drawing.Point(621, 427);
+            this.btnStart.Location = new System.Drawing.Point(732, 453);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(169, 44);
             this.btnStart.TabIndex = 3;
@@ -370,49 +429,39 @@
             // dgvLeaderboard
             // 
             this.dgvLeaderboard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvLeaderboard.Location = new System.Drawing.Point(49, 30);
+            this.dgvLeaderboard.Location = new System.Drawing.Point(28, 28);
             this.dgvLeaderboard.Name = "dgvLeaderboard";
-            this.dgvLeaderboard.Size = new System.Drawing.Size(437, 450);
+            this.dgvLeaderboard.Size = new System.Drawing.Size(464, 475);
             this.dgvLeaderboard.TabIndex = 2;
             // 
             // lblCongrats
             // 
             this.lblCongrats.AutoSize = true;
-            this.lblCongrats.Location = new System.Drawing.Point(628, 51);
+            this.lblCongrats.Location = new System.Drawing.Point(732, 38);
             this.lblCongrats.Name = "lblCongrats";
             this.lblCongrats.Size = new System.Drawing.Size(162, 23);
             this.lblCongrats.TabIndex = 1;
             this.lblCongrats.Text = "Yay! You Finished!";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bahnschrift", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(672, 99);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 39);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "96%";
-            // 
             // lblAccuracy
             // 
             this.lblAccuracy.AutoSize = true;
             this.lblAccuracy.Font = new System.Drawing.Font("Bahnschrift", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAccuracy.Location = new System.Drawing.Point(677, 104);
+            this.lblAccuracy.Location = new System.Drawing.Point(781, 87);
             this.lblAccuracy.Name = "lblAccuracy";
             this.lblAccuracy.Size = new System.Drawing.Size(70, 39);
             this.lblAccuracy.TabIndex = 0;
             this.lblAccuracy.Text = "96%";
             // 
-            // flwQuizModes
+            // flwStatsValues
             // 
-            this.flwQuizModes.Controls.Add(this.btnRookie);
-            this.flwQuizModes.Controls.Add(this.btnVeteran);
-            this.flwQuizModes.Controls.Add(this.btnGrandmaster);
-            this.flwQuizModes.Location = new System.Drawing.Point(239, 189);
-            this.flwQuizModes.Name = "flwQuizModes";
-            this.flwQuizModes.Size = new System.Drawing.Size(570, 101);
-            this.flwQuizModes.TabIndex = 4;
+            this.flwStatsValues.Controls.Add(this.lblPiScore);
+            this.flwStatsValues.Controls.Add(this.lblRank);
+            this.flwStatsValues.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flwStatsValues.Location = new System.Drawing.Point(840, 235);
+            this.flwStatsValues.Name = "flwStatsValues";
+            this.flwStatsValues.Size = new System.Drawing.Size(81, 62);
+            this.flwStatsValues.TabIndex = 9;
             // 
             // frmMain
             // 
@@ -433,12 +482,18 @@
             this.tabWelcom.PerformLayout();
             this.tabQuizMode.ResumeLayout(false);
             this.tabQuizMode.PerformLayout();
+            this.flwQuizModes.ResumeLayout(false);
             this.tabQuestion.ResumeLayout(false);
             this.tabQuestion.PerformLayout();
+            this.flwTopRowControls.ResumeLayout(false);
+            this.flwTopRowControls.PerformLayout();
             this.tabEndScreen.ResumeLayout(false);
             this.tabEndScreen.PerformLayout();
+            this.flwStatsLabels.ResumeLayout(false);
+            this.flwStatsLabels.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLeaderboard)).EndInit();
-            this.flwQuizModes.ResumeLayout(false);
+            this.flwStatsValues.ResumeLayout(false);
+            this.flwStatsValues.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -472,10 +527,14 @@
         private System.Windows.Forms.Label lblCongrats;
         private System.Windows.Forms.DataGridView dgvLeaderboard;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTotalPiPoints;
-        private System.Windows.Forms.Label lblLeaderboardPos;
+        private System.Windows.Forms.Label lblRankText;
         private System.Windows.Forms.FlowLayoutPanel flwQuizModes;
+        private System.Windows.Forms.FlowLayoutPanel flwTopRowControls;
+        private System.Windows.Forms.Label lblPiScore;
+        private System.Windows.Forms.Label lblRank;
+        private System.Windows.Forms.FlowLayoutPanel flwStatsLabels;
+        private System.Windows.Forms.FlowLayoutPanel flwStatsValues;
     }
 }
 

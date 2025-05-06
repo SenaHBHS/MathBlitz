@@ -1,0 +1,31 @@
+id,question,option_1,option_2,option_3,option_4,answer,time_limit,score,level
+M1,"What is d/dx (5x^2) at x = 2?",5,10,20,40,20,1,2,Rookie
+M2,"∫0^1 x dx equals?",0.5,1,2,1.5,0.5,1,2,Rookie
+M3,"What is d/dx (3x^3)?",9x^2,3x^2,x^3,9x,9x^2,1,2,Rookie
+M4,"What is ∫ 2 dx?",2x + C,x^2 + C,ln 2 + C,C,2x + C,1,2,Rookie
+M5,"What is lim x→0 (sin x)/x?",0,1,∞,Does not exist,1,1,2,Rookie
+M6,"What is d/dx (e^{2x})?",2e^{2x},e^x,e^{2x},2e^x,2e^{2x},1,2,Rookie
+M7,"What is ∫ 1 dx from 3 to 5?",2,1,3,5,2,1,2,Rookie
+M8,"What is d/dx (ln x^3)?",3/x,1/(3x),1/x,x^2,3/x,1,2,Rookie
+M9,"What is ∫ 1/x dx?",1/x + C,ln(x) + C,x + C,e^x + C,ln(x) + C,1,2,Rookie
+M10,"What is d/dx (x^0)?",0,1,x^{-1},Does not exist,0,1,2,Rookie
+M11,"What is d/dx (√x)?",1/(2√x),2√x,√x/2,x^{-2},1/(2√x),1.5,3,Veteran
+M12,"What is ∫ 2x^2 dx?",2x^3/3 + C,x^3 + C,x^3/3 + C,3x^2 + C,2x^3/3 + C,1.5,3,Veteran
+M13,"What is lim x→∞ (3x + 2)/x?",3,∞,2,0,3,1.5,3,Veteran
+M14,"What is d^2/dx^2 (x^3)?",6x,3x^2,x^3,6,6x,1.5,3,Veteran
+M15,"What is ∫ (3x^2 - 1) dx?",x^3 - x + C,3x^3 - x + C,x^3 + C,x^3 - 1 + C,x^3 - x + C,1.5,3,Veteran
+M16,"What is d/dx (tan x)?",sec^2 x,csc^2 x,sec x tan x,tan x,sec^2 x,1.5,3,Veteran
+M17,"What is ∫ sec^2 x dx?",tan x + C,sec x + C,cos x + C,ln|sec x| + C,tan x + C,1.5,3,Veteran
+M18,"What is lim x→0 (e^{3x} - 1)/x?",3,1,0,∞,3,1.5,3,Veteran
+M19,"What is d/dx ln(sin x)?",cot x,csc x,cos x,tan x,cot x,1.5,3,Veteran
+M20,"What is ∫_1^e (1/x) dx?",1,e,2,0,1,1.5,3,Veteran
+M21,"What is lim x→0 (x - sin x)/x^3?",1/6,0,∞,1/2,1/6,2,4,Grandmaster
+M22,"What is ∫ x e^x dx?",x e^x - e^x + C,e^x + C,x e^x + C,e^x (x + 1) + C,x e^x - e^x + C,2,4,Grandmaster
+M23,"What is d/dx (x^x)?",x^x (ln x + 1),x^{x-1},x^x ln x,x^x (1 - ln x),x^x (ln x + 1),2,4,Grandmaster
+M24,"What is ∫_0^1 ln x dx?",-1,0,1,undefined,-1,2,4,Grandmaster
+M25,"What is lim x→∞ (x ln x)/(e^x)?",0,∞,1,Does not exist,0,2,4,Grandmaster
+M26,"What is ∫ e^x sin x dx?",(e^x/2)(sin x - cos x) + C,(e^x/2)(sin x + cos x) + C,e^x sin x - e^x cos x + C,e^x cos x + C,(e^x/2)(sin x - cos x) + C,2,4,Grandmaster
+M27,"What is ∫ a^x dx?",a^x/ln a + C,ln a * a^x + C,a^x + C,x a^x + C,a^x/ln a + C,2,4,Grandmaster
+M28,"What is derivative of arccos x?",-1/√(1 - x^2),1/√(1 - x^2),-1/(1 - x^2),1/(1 - x^2),-1/√(1 - x^2),2,4,Grandmaster
+M29,"What is ∫ (1/(1 + x^2)) dx?",arctan x + C,arcsin x + C,ln(1 + x^2) + C,arccos x + C,arctan x + C,2,4,Grandmaster
+M30,"What is lim x→0 (1 + x)^{1/x}?",e,1,∞,0,e,2,4,Grandmaster

@@ -1,4 +1,3 @@
-id,question,answer,time_limit,score,level
 T1,"The derivative of x^3 is 3x^2.",True,0.5,1,Rookie
 T2,"The integral of 2x dx from 0 to 1 equals 1.",True,0.5,1,Rookie
 T3,"The limit as x approaches 0 of sin x / x equals 0.",False,0.5,1,Rookie

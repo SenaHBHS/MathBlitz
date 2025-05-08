@@ -13,42 +13,59 @@ namespace MathBlitz
 {
     public partial class frmMain : Form
     {
-        string tfqFilePath = Path.Combine(Application.StartupPath, "math_blitz_true_false.csv"); // path to true false questions
-        string mcqFilePath = Path.Combine(Application.StartupPath, "math_blitz_multiple_choice.csv"); // path to multi choice questions
-        string errorLogPath = Path.Combine(Application.StartupPath, "error_log.csv");
+        string errorLogPath = Path.Combine(Application.StartupPath, "error_log.csv"); // path to log errors
 
-        int questionDataFieldsCount = 6; // excluding the options fields
-        Dictionary<string, int> questionDataFieldsCountDict = new Dictionary<string, int>() {
-            { "true-false-questions", 6 },
-            { "multi-choice-questions", 10 }
-        };
+        // question data related
+        string mcqFilePath = Path.Combine(Application.StartupPath, "math_blitz_multiple_choice.csv"); // path to multi choice questions
+        string tfqFilePath = Path.Combine(Application.StartupPath, "math_blitz_true_false.csv"); // path to true false questions
+        int baseFieldsNumber = 6; // the number of fields in the true false questions csv
+        int mcqOptionsCount = 4; // the number of options each MCQ has. this is added to the baseFieldsNumber to get the total MCQ fields count
+        List<MultiChoice> mcqQuestionsList = new List<MultiChoice>();
+        List<TrueFalse> trueFalseQuestionsList = new List<TrueFalse>();
 
         public frmMain()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// refreshes the datagrid view by resetting its data source
+        /// </summary>
         private void RefreshLeaderboardDgv()
         {
             dgvLeaderboard.DataSource = null;
-            dgvLeaderboard.DataSource = null; // wire up the data list later
+            dgvLeaderboard.DataSource = null; // TODO: wire up the data list later
         }
 
+        /// <summary>
+        /// logs errors with datestamps in a csv file
+        /// </summary>
+        /// <param name="errorMessage">the error occurred</param>
         private void LogError(string errorMessage)
         {
             if (File.Exists(errorLogPath))
             {
                 using (StreamWriter sw = new StreamWriter(errorLogPath, true))
                 {
-                    sw.WriteLine($"{DateTime.Now}: {errorMessage}");
+                    sw.WriteLine($"{DateTime.Now}, {errorMessage}");
                 }
             }
         }
 
+        /// <summary>
+        /// loads data from a csv file and turns them into a list of objects
+        /// </summary>
+        /// <param name="filePath">file path to read the data from</param>
+        /// <param name="loadDataType">data type can be "true-false-questions", "multi-choice-questions" or "leaderboard-data"</param>
         private void LoadDataFile(string filePath, string loadDataType)
         {
             if (File.Exists(filePath))
             {
                 string line;
+                Dictionary<string, int> questionDataFieldsCountDict = new Dictionary<string, int>() {
+                    { "true-false-questions", baseFieldsNumber },
+                    { "multi-choice-questions", baseFieldsNumber + mcqOptionsCount }
+                };
+
                 using (StreamReader sr = new StreamReader(filePath))
                 {
                     int lineNo = 0;
@@ -66,7 +83,7 @@ namespace MathBlitz
                                     string question = fields[1];
                                     string answer = fields[2];
                                     string timeLimitStr = fields[3]; // in minutes
-                                    bool isTimeNumeric = int.TryParse(timeLimitStr, out int timeLimit);
+                                    bool isTimeNumeric = double.TryParse(timeLimitStr, out double timeLimit);
                                     string scoreStr = fields[4];
                                     bool isScoreNumeric = int.TryParse(scoreStr, out int score);
                                     string level = fields[5];
@@ -74,29 +91,41 @@ namespace MathBlitz
                                     {
                                         if (loadDataType == "multi-choice-questions")
                                         {
-                                            // id,question,option_1,option_2,option_3,option_4,answer,time_limit,score,level
-                                            string optionOne = fields[6];
-                                            string optionTwo = fields[7];
-                                            string optionThree = fields[8];
+                                            // id,question,answer,time_limit,score,level,option_1,option_2,option_3,option_4
+                                            string[] options = new string[mcqOptionsCount];
+                                            // extracting the options (assumes the options are the last few fields)
+                                            Array.Copy(fields, baseFieldsNumber-1, options, 0, mcqOptionsCount);
+
+                                            // creating a new question entry
+                                            MultiChoice newMcQuestion = new MultiChoice(id, question, answer, timeLimit, score, level, options);
+                                            mcqQuestionsList.Add(newMcQuestion);
                                         } else
                                         {
                                             // id,question,answer,time_limit,score,level
+                                            TrueFalse newTrueFalseQuestion = new TrueFalse(id, question, answer, timeLimit, score, level);
+                                            trueFalseQuestionsList.Add(newTrueFalseQuestion);
                                         }
                                     } else
                                     {
-                                        MessageBox.Show($"The score or the time in {lineNo} is non-numerical!");
+                                        LogError($"The score or the time in {lineNo} is non-numerical");
                                     }
+                                } else
+                                {
+                                    LogError($"{lineNo} doesn't have necessary questions data fields");
                                 }
                             }
                         } else
                         {
-                            MessageBox.Show(lineNo + " is empty!");
+                            LogError($"{lineNo} is empty");
                         }
-                        // TrueFalse newEntry = new TrueFalse(...fields);
-                        // dataList.Add(newEntry);
                     }
                 }
             }
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            LoadDataFile(mcqFilePath, "multi-choice-questions");
         }
     }
 }

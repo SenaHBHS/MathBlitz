@@ -53,16 +53,16 @@
             this.btnOptionOne = new System.Windows.Forms.Button();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.tabEndScreen = new System.Windows.Forms.TabPage();
+            this.flwStatsValues = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblPiScore = new System.Windows.Forms.Label();
+            this.lblRank = new System.Windows.Forms.Label();
             this.flwStatsLabels = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTotalPiPoints = new System.Windows.Forms.Label();
             this.lblRankText = new System.Windows.Forms.Label();
-            this.lblRank = new System.Windows.Forms.Label();
-            this.lblPiScore = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.dgvLeaderboard = new System.Windows.Forms.DataGridView();
             this.lblCongrats = new System.Windows.Forms.Label();
             this.lblAccuracy = new System.Windows.Forms.Label();
-            this.flwStatsValues = new System.Windows.Forms.FlowLayoutPanel();
             this.tbcCore.SuspendLayout();
             this.tabWelcom.SuspendLayout();
             this.tabQuizMode.SuspendLayout();
@@ -70,9 +70,9 @@
             this.tabQuestion.SuspendLayout();
             this.flwTopRowControls.SuspendLayout();
             this.tabEndScreen.SuspendLayout();
+            this.flwStatsValues.SuspendLayout();
             this.flwStatsLabels.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLeaderboard)).BeginInit();
-            this.flwStatsValues.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbcCore
@@ -364,6 +364,36 @@
             this.tabEndScreen.TabIndex = 3;
             this.tabEndScreen.Text = "Congrats";
             // 
+            // flwStatsValues
+            // 
+            this.flwStatsValues.Controls.Add(this.lblPiScore);
+            this.flwStatsValues.Controls.Add(this.lblRank);
+            this.flwStatsValues.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flwStatsValues.Location = new System.Drawing.Point(840, 235);
+            this.flwStatsValues.Name = "flwStatsValues";
+            this.flwStatsValues.Size = new System.Drawing.Size(81, 62);
+            this.flwStatsValues.TabIndex = 9;
+            // 
+            // lblPiScore
+            // 
+            this.lblPiScore.AutoSize = true;
+            this.lblPiScore.Location = new System.Drawing.Point(3, 5);
+            this.lblPiScore.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblPiScore.Name = "lblPiScore";
+            this.lblPiScore.Size = new System.Drawing.Size(49, 23);
+            this.lblPiScore.TabIndex = 6;
+            this.lblPiScore.Text = "100π";
+            // 
+            // lblRank
+            // 
+            this.lblRank.AutoSize = true;
+            this.lblRank.Location = new System.Drawing.Point(3, 33);
+            this.lblRank.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblRank.Name = "lblRank";
+            this.lblRank.Size = new System.Drawing.Size(32, 23);
+            this.lblRank.TabIndex = 7;
+            this.lblRank.Text = "#2";
+            // 
             // flwStatsLabels
             // 
             this.flwStatsLabels.Controls.Add(this.lblTotalPiPoints);
@@ -395,26 +425,6 @@
             this.lblRankText.Size = new System.Drawing.Size(57, 23);
             this.lblRankText.TabIndex = 5;
             this.lblRankText.Text = "Rank:";
-            // 
-            // lblRank
-            // 
-            this.lblRank.AutoSize = true;
-            this.lblRank.Location = new System.Drawing.Point(3, 33);
-            this.lblRank.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
-            this.lblRank.Name = "lblRank";
-            this.lblRank.Size = new System.Drawing.Size(32, 23);
-            this.lblRank.TabIndex = 7;
-            this.lblRank.Text = "#2";
-            // 
-            // lblPiScore
-            // 
-            this.lblPiScore.AutoSize = true;
-            this.lblPiScore.Location = new System.Drawing.Point(3, 5);
-            this.lblPiScore.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
-            this.lblPiScore.Name = "lblPiScore";
-            this.lblPiScore.Size = new System.Drawing.Size(49, 23);
-            this.lblPiScore.TabIndex = 6;
-            this.lblPiScore.Text = "100π";
             // 
             // btnStart
             // 
@@ -453,16 +463,6 @@
             this.lblAccuracy.TabIndex = 0;
             this.lblAccuracy.Text = "96%";
             // 
-            // flwStatsValues
-            // 
-            this.flwStatsValues.Controls.Add(this.lblPiScore);
-            this.flwStatsValues.Controls.Add(this.lblRank);
-            this.flwStatsValues.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flwStatsValues.Location = new System.Drawing.Point(840, 235);
-            this.flwStatsValues.Name = "flwStatsValues";
-            this.flwStatsValues.Size = new System.Drawing.Size(81, 62);
-            this.flwStatsValues.TabIndex = 9;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -477,6 +477,7 @@
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Text = "Math Blitz";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.tbcCore.ResumeLayout(false);
             this.tabWelcom.ResumeLayout(false);
             this.tabWelcom.PerformLayout();
@@ -489,11 +490,11 @@
             this.flwTopRowControls.PerformLayout();
             this.tabEndScreen.ResumeLayout(false);
             this.tabEndScreen.PerformLayout();
+            this.flwStatsValues.ResumeLayout(false);
+            this.flwStatsValues.PerformLayout();
             this.flwStatsLabels.ResumeLayout(false);
             this.flwStatsLabels.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLeaderboard)).EndInit();
-            this.flwStatsValues.ResumeLayout(false);
-            this.flwStatsValues.PerformLayout();
             this.ResumeLayout(false);
 
         }

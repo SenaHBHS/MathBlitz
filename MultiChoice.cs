@@ -8,15 +8,15 @@ namespace MathBlitz
 {
     internal class MultiChoice : Question
     {
-        public List<string> Options { get; set; }
+        public string[] Options { get; set; }
 
-        public MultiChoice(string id, string questionText, string answer, string timeLimitStr, string scoreStr, string level, List<string> options)
+        public MultiChoice(string id, string questionText, string answer, double timeLimit, int score, string level, string[] options)
         {
             this.Id = id;
             this.QuestionText = questionText;
             this.Answer = answer;
-            this.TimeLimitStr = timeLimitStr;
-            this.ScoreStr = scoreStr;
+            this.TimeLimit = timeLimit;
+            this.Score = score;
             this.Level = level;
             this.Options = options;
         }

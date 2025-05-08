@@ -1,4 +1,3 @@
-id,question,answer,time_limit,score,level,option_1,option_2,option_3,option_4
 M1,What is d/dx (5x^2) at x = 2?,20,1,2,Rookie,5,10,20,40
 M2,∫0^1 x dx equals?,0.5,1,2,Rookie,0.5,1,2,1.5
 M3,What is d/dx (3x^3)?,9x^2,1,2,Rookie,9x^2,3x^2,x^3,9x

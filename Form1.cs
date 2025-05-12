@@ -15,18 +15,27 @@ namespace MathBlitz
     {
         string errorLogPath = Path.Combine(Application.StartupPath, "error_log.csv"); // path to log errors
 
+        string playerName = "";
+
         // question data related
         string mcqFilePath = Path.Combine(Application.StartupPath, "math_blitz_multiple_choice.csv"); // path to multi choice questions
         string tfqFilePath = Path.Combine(Application.StartupPath, "math_blitz_true_false.csv"); // path to true false questions
         int baseFieldsNumber = 6; // the number of fields in the true false questions csv
         int mcqOptionsCount = 4; // the number of options each MCQ has. this is added to the baseFieldsNumber to get the total MCQ fields count
-        List<MultiChoice> mcqQuestionsList = new List<MultiChoice>();
-        List<TrueFalse> trueFalseQuestionsList = new List<TrueFalse>();
+        // loaded multi choice questions by level
+        List<MultiChoice> rookieMultiChoiceList = new List<MultiChoice>();
+        List<MultiChoice> veteranMultiChoiceList = new List<MultiChoice>();
+        List<MultiChoice> grandmasterMultiChoiceList = new List<MultiChoice>();
+        // loaded true false quesions by level
+        List<TrueFalse> rookieTrueFalseList = new List<TrueFalse>();
+        List<TrueFalse> veteranTrueFalseList = new List<TrueFalse>();
+        List<TrueFalse> grandmasterTrueFalseList = new List<TrueFalse>();
 
         public frmMain()
         {
             InitializeComponent();
         }
+
         /// <summary>
         /// refreshes the datagrid view by resetting its data source
         /// </summary>
@@ -98,34 +107,73 @@ namespace MathBlitz
 
                                             // creating a new question entry
                                             MultiChoice newMcQuestion = new MultiChoice(id, question, answer, timeLimit, score, level, options);
-                                            mcqQuestionsList.Add(newMcQuestion);
+                                            if (level == "Grandmaster")
+                                            {
+                                                grandmasterMultiChoiceList.Add(newMcQuestion);
+                                            } else if (level == "Veteran")
+                                            {
+                                                veteranMultiChoiceList.Add(newMcQuestion);
+                                            } else
+                                            {
+                                                rookieMultiChoiceList.Add(newMcQuestion);
+                                            }
                                         } else
                                         {
                                             // id,question,answer,time_limit,score,level
                                             TrueFalse newTrueFalseQuestion = new TrueFalse(id, question, answer, timeLimit, score, level);
-                                            trueFalseQuestionsList.Add(newTrueFalseQuestion);
+                                            if (level == "Grandmaster")
+                                            {
+                                                grandmasterTrueFalseList.Add(newTrueFalseQuestion);
+                                            }
+                                            else if (level == "Veteran")
+                                            {
+                                                veteranTrueFalseList.Add(newTrueFalseQuestion);
+                                            }
+                                            else
+                                            {
+                                                rookieTrueFalseList.Add(newTrueFalseQuestion);
+                                            }
                                         }
                                     } else
                                     {
-                                        LogError($"The score or the time in {lineNo} is non-numerical");
+                                        LogError($"Line {lineNo}: The score or the time is non-numerical");
                                     }
                                 } else
                                 {
-                                    LogError($"{lineNo} doesn't have necessary questions data fields");
+                                    LogError($"Line {lineNo}: Missing necessary questions data fields");
                                 }
                             }
                         } else
                         {
-                            LogError($"{lineNo} is empty");
+                            LogError($"Line {lineNo}: Empty");
                         }
                     }
                 }
             }
         }
 
+        private void SetUpQuestions()
+        {
+            // determine the length of the quiz (15 questions or as many as available in the 2 arrays!): max(array.length, 15)
+            // shuffle the 2 arrays for the particular level
+        }
+
         private void frmMain_Load(object sender, EventArgs e)
         {
-            LoadDataFile(mcqFilePath, "multi-choice-questions");
+            LoadDataFile(mcqFilePath, "true-false-questions");
+            RefreshLeaderboardDgv();
+        }
+
+        private void btnStartGame_Click(object sender, EventArgs e)
+        {
+            string nameInput = txtUsername.Text;
+            if (nameInput != "")
+            {
+                playerName = nameInput;
+            } else
+            {
+                MessageBox.Show("Your username can't be empty :(");
+            }
         }
     }
 }

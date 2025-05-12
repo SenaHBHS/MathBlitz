@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.tbcCore = new System.Windows.Forms.TabControl();
-            this.tabWelcom = new System.Windows.Forms.TabPage();
+            this.tabWelcome = new System.Windows.Forms.TabPage();
             this.lblUsername = new System.Windows.Forms.Label();
             this.btnStartGame = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblSuperTitle = new System.Windows.Forms.Label();
             this.tabQuizMode = new System.Windows.Forms.TabPage();
@@ -64,7 +64,7 @@
             this.lblCongrats = new System.Windows.Forms.Label();
             this.lblAccuracy = new System.Windows.Forms.Label();
             this.tbcCore.SuspendLayout();
-            this.tabWelcom.SuspendLayout();
+            this.tabWelcome.SuspendLayout();
             this.tabQuizMode.SuspendLayout();
             this.flwQuizModes.SuspendLayout();
             this.tabQuestion.SuspendLayout();
@@ -77,7 +77,7 @@
             // 
             // tbcCore
             // 
-            this.tbcCore.Controls.Add(this.tabWelcom);
+            this.tbcCore.Controls.Add(this.tabWelcome);
             this.tbcCore.Controls.Add(this.tabQuizMode);
             this.tbcCore.Controls.Add(this.tabQuestion);
             this.tbcCore.Controls.Add(this.tabEndScreen);
@@ -89,22 +89,22 @@
             this.tbcCore.Size = new System.Drawing.Size(1084, 561);
             this.tbcCore.TabIndex = 0;
             // 
-            // tabWelcom
+            // tabWelcome
             // 
-            this.tabWelcom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
-            this.tabWelcom.Controls.Add(this.lblUsername);
-            this.tabWelcom.Controls.Add(this.btnStartGame);
-            this.tabWelcom.Controls.Add(this.textBox1);
-            this.tabWelcom.Controls.Add(this.lblWelcome);
-            this.tabWelcom.Controls.Add(this.lblSuperTitle);
-            this.tabWelcom.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabWelcom.Location = new System.Drawing.Point(4, 27);
-            this.tabWelcom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabWelcom.Name = "tabWelcom";
-            this.tabWelcom.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabWelcom.Size = new System.Drawing.Size(1076, 530);
-            this.tabWelcom.TabIndex = 0;
-            this.tabWelcom.Text = "Welcome";
+            this.tabWelcome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
+            this.tabWelcome.Controls.Add(this.lblUsername);
+            this.tabWelcome.Controls.Add(this.btnStartGame);
+            this.tabWelcome.Controls.Add(this.txtUsername);
+            this.tabWelcome.Controls.Add(this.lblWelcome);
+            this.tabWelcome.Controls.Add(this.lblSuperTitle);
+            this.tabWelcome.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabWelcome.Location = new System.Drawing.Point(4, 27);
+            this.tabWelcome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabWelcome.Name = "tabWelcome";
+            this.tabWelcome.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabWelcome.Size = new System.Drawing.Size(1076, 530);
+            this.tabWelcome.TabIndex = 0;
+            this.tabWelcome.Text = "Welcome";
             // 
             // lblUsername
             // 
@@ -126,13 +126,14 @@
             this.btnStartGame.TabIndex = 3;
             this.btnStartGame.Text = "Start Quiz!";
             this.btnStartGame.UseVisualStyleBackColor = false;
+            this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
-            // textBox1
+            // txtUsername
             // 
-            this.textBox1.Location = new System.Drawing.Point(521, 312);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(154, 30);
-            this.textBox1.TabIndex = 2;
+            this.txtUsername.Location = new System.Drawing.Point(521, 312);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(154, 30);
+            this.txtUsername.TabIndex = 2;
             // 
             // lblWelcome
             // 
@@ -479,8 +480,8 @@
             this.Text = "Math Blitz";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tbcCore.ResumeLayout(false);
-            this.tabWelcom.ResumeLayout(false);
-            this.tabWelcom.PerformLayout();
+            this.tabWelcome.ResumeLayout(false);
+            this.tabWelcome.PerformLayout();
             this.tabQuizMode.ResumeLayout(false);
             this.tabQuizMode.PerformLayout();
             this.flwQuizModes.ResumeLayout(false);
@@ -502,12 +503,12 @@
         #endregion
 
         private System.Windows.Forms.TabControl tbcCore;
-        private System.Windows.Forms.TabPage tabWelcom;
+        private System.Windows.Forms.TabPage tabWelcome;
         private System.Windows.Forms.TabPage tabQuizMode;
         private System.Windows.Forms.Label lblSuperTitle;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Button btnStartGame;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblSelectInstruction;
         private System.Windows.Forms.Button btnRookie;

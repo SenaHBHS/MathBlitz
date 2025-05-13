@@ -31,6 +31,17 @@ namespace MathBlitz
         List<TrueFalse> veteranTrueFalseList = new List<TrueFalse>();
         List<TrueFalse> grandmasterTrueFalseList = new List<TrueFalse>();
 
+        // quiz related variables
+        string selectedLevel = "";
+        List<MultiChoice> selectedMultiChoiceList;
+        List<TrueFalse> selectedTrueFalseList;
+        int questionsCount = 15; // 15 is the default number and if the questions available is less than that questionsCount changes
+        int trueFalseQuota = 6; // maximum number of true false questions that can be asked
+        int nTrueFalseAsked = 0; // the number of true false questions asked
+        List<string> askedQuestionIds = new List<string>();
+        string currentQuestionType; // "multi-choice" or "true-false"
+        int currentQuestionIndex;
+
         public frmMain()
         {
             InitializeComponent();
@@ -152,10 +163,72 @@ namespace MathBlitz
             }
         }
 
-        private void SetUpQuestions()
+        private void SelectLevel(string level)
         {
-            // determine the length of the quiz (15 questions or as many as available in the 2 arrays!): max(array.length, 15)
-            // shuffle the 2 arrays for the particular level
+            selectedLevel = level;
+
+            if (level == "Grandmaster")
+            {
+                selectedMultiChoiceList = grandmasterMultiChoiceList;
+                selectedTrueFalseList = grandmasterTrueFalseList;
+            } else if (level == "Veteran")
+            {
+                selectedMultiChoiceList = veteranMultiChoiceList;
+                selectedTrueFalseList = veteranTrueFalseList;
+            } else
+            {
+                selectedMultiChoiceList = rookieMultiChoiceList;
+                selectedTrueFalseList = rookieTrueFalseList;
+            }
+
+            // updating these variables here prevents the possibility for infinite loops
+            questionsCount = Math.Min(questionsCount, selectedMultiChoiceList.Count + selectedTrueFalseList.Count);
+            trueFalseQuota = Math.Min(trueFalseQuota, selectedTrueFalseList.Count);
+        }
+
+        private void LoadNewQuestion()
+        {
+            Random rand = new Random();
+            int newQuestionType; // 0 - true false question, 1 - multi choice question
+
+            if (nTrueFalseAsked < trueFalseQuota)
+            {
+                newQuestionType = rand.Next(2);
+            } else
+            {
+                newQuestionType = 1;
+            }
+
+            if (newQuestionType == 0)
+            {
+                int newQuestionIndex = rand.Next(selectedTrueFalseList.Count);
+                TrueFalse newQuestion = selectedTrueFalseList[newQuestionIndex];
+                string newQuestionId = newQuestion.Id;
+
+                while (askedQuestionIds.Contains(newQuestionId))
+                {
+                    newQuestionIndex = rand.Next(selectedTrueFalseList.Count);
+                    newQuestion = selectedTrueFalseList[newQuestionIndex];
+                    newQuestionId = newQuestion.Id; 
+                }
+
+                currentQuestionType = "true-false";
+                currentQuestionIndex = newQuestionIndex;
+            } else
+            {
+                int newQuestionIndex = rand.Next(selectedMultiChoiceList.Count);
+                MultiChoice newQuestion = selectedMultiChoiceList[newQuestionIndex];
+                string newQuestionId = newQuestion.Id;
+
+                while (askedQuestionIds.Contains(newQuestionId))
+                {
+                    newQuestionIndex = rand.Next(selectedMultiChoiceList.Count);
+                    newQuestion = selectedMultiChoiceList[newQuestionIndex];
+                    newQuestionId = newQuestion.Id;
+                }
+                currentQuestionType = "multi-choice";
+                currentQuestionIndex = newQuestionIndex;
+            }
         }
 
         private void frmMain_Load(object sender, EventArgs e)

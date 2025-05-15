@@ -38,9 +38,17 @@ namespace MathBlitz
         int questionsCount = 15; // 15 is the default number and if the questions available is less than that questionsCount changes
         int trueFalseQuota = 6; // maximum number of true false questions that can be asked
         int nTrueFalseAsked = 0; // the number of true false questions asked
+        List<string> trueFalseOptions = new List<string> { "True", "False" };
         List<string> askedQuestionIds = new List<string>();
         string currentQuestionType; // "multi-choice" or "true-false"
-        int currentQuestionIndex;
+        TrueFalse currentTrueFalseQuestion;
+        MultiChoice currentMultiChoiceQuestion;
+        int elapsedSeconds = 0;
+        
+        // common color values
+        Color red = Color.FromArgb(1, 252, 155, 147);
+        Color green = Color.FromArgb(1, 184, 242, 230);
+
 
         public frmMain()
         {
@@ -163,6 +171,10 @@ namespace MathBlitz
             }
         }
 
+        private void CenterAlignQuestion(Label lbl)
+        {
+            lbl.Location = new Point((tabQuestion.Width - lbl.Width) / 2, lbl.Location.Y);
+        }
         private void SelectLevel(string level)
         {
             selectedLevel = level;
@@ -213,7 +225,7 @@ namespace MathBlitz
                 }
 
                 currentQuestionType = "true-false";
-                currentQuestionIndex = newQuestionIndex;
+                currentTrueFalseQuestion = newQuestion;
             } else
             {
                 int newQuestionIndex = rand.Next(selectedMultiChoiceList.Count);
@@ -227,7 +239,99 @@ namespace MathBlitz
                     newQuestionId = newQuestion.Id;
                 }
                 currentQuestionType = "multi-choice";
-                currentQuestionIndex = newQuestionIndex;
+                currentMultiChoiceQuestion = newQuestion;
+            }
+        }
+
+        private void SetUpQuestionUI()
+        {
+            // reset the colors (hide the below two options for multi choice)
+            if (currentQuestionType == "multi-choice")
+            {
+                btnOptionThree.Show();
+                btnOptionFour.Show();
+            } else
+            {
+                btnOptionThree.Hide();
+                btnOptionFour.Hide();
+            }
+
+            elapsedSeconds = 0;
+            lblElapsedTime.Text = "00:00";
+            lblQuestionCount.Text = $"{askedQuestionIds.Count}/{questionsCount}";
+            
+            // setting button colors
+            btnOptionOne.BackColor = Color.Transparent;
+            btnOptionTwo.BackColor = Color.Transparent;
+            btnOptionThree.BackColor = Color.Transparent;
+            btnOptionFour.BackColor = Color.Transparent;
+            btnContinue.BackColor = Color.Transparent;
+        }
+
+        private string GetTwoDigitNumberString(int num)
+        {
+            if (num < 10)
+            {
+                return $"0{num}";
+            } else
+            {
+                return num.ToString();
+            }
+        }
+
+        private void DisplayElapsedTime()
+        {
+            int nMinutes = elapsedSeconds / 60;
+            int nSeconds = elapsedSeconds % 60;
+            lblElapsedTime.Text = $"{GetTwoDigitNumberString(nMinutes)}:{GetTwoDigitNumberString(nSeconds)}";
+        }
+
+        private void ColorOptionButton(int optionNum, Color color)
+        {
+            if (optionNum == 1)
+            {
+                btnOptionOne.BackColor = green;
+            }
+            else if (optionNum == 2)
+            {
+                btnOptionTwo.BackColor = green;
+            }
+            else if (optionNum == 3)
+            {
+                btnOptionThree.BackColor = green;
+            }
+            else
+            {
+                btnOptionFour.BackColor = green;
+            }
+        }
+
+        private void ValidateSelectedOption(int selectedOption)
+        {
+            int correctOption;
+
+            if (currentQuestionType == "multi-choice")
+            {
+                correctOption = currentMultiChoiceQuestion.AnswerOptionNum;
+            } else
+            {
+                string correctTrueFalseAns = currentTrueFalseQuestion.Answer;
+                if (trueFalseOptions[selectedOption].ToLower() == correctTrueFalseAns.ToLower())
+                {
+                    correctOption = selectedOption;
+                } else
+                {
+                    correctOption = selectedOption == 1 ? 0 : 1;
+                }
+            }
+
+            if (selectedOption == correctOption)
+            {
+                ColorOptionButton(selectedOption, green);
+            } else
+            {
+                ColorOptionButton(selectedOption, red);
+                ColorOptionButton(correctOption, green);
             }
         }
 
@@ -247,6 +351,36 @@ namespace MathBlitz
             {
                 MessageBox.Show("Your username can't be empty :(");
             }
+        }
+
+        private void tmrQuestion_Tick(object sender, EventArgs e)
+        {
+            elapsedSeconds += 1;
+        }
+
+        private void btnOptionOne_Click(object sender, EventArgs e)
+        {
+            ValidateSelectedOption(1);
+        }
+
+        private void btnOptionTwo_Click(object sender, EventArgs e)
+        {
+            ValidateSelectedOption(2);
+        }
+
+        private void btnOptionThree_Click(object sender, EventArgs e)
+        {
+            ValidateSelectedOption(3);
+        }
+
+        private void btnOptionFour_Click(object sender, EventArgs e)
+        {
+            ValidateSelectedOption(4);
+        }
+
+        private void btnContinue_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

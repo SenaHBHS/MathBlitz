@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbcCore = new System.Windows.Forms.TabControl();
             this.tabWelcome = new System.Windows.Forms.TabPage();
             this.lblUsername = new System.Windows.Forms.Label();
@@ -63,6 +64,7 @@
             this.dgvLeaderboard = new System.Windows.Forms.DataGridView();
             this.lblCongrats = new System.Windows.Forms.Label();
             this.lblAccuracy = new System.Windows.Forms.Label();
+            this.tmrQuestion = new System.Windows.Forms.Timer(this.components);
             this.tbcCore.SuspendLayout();
             this.tabWelcome.SuspendLayout();
             this.tabQuizMode.SuspendLayout();
@@ -293,6 +295,7 @@
             this.btnContinue.TabIndex = 9;
             this.btnContinue.Text = "Continue";
             this.btnContinue.UseVisualStyleBackColor = false;
+            this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
             // 
             // btnOptionFour
             // 
@@ -304,6 +307,7 @@
             this.btnOptionFour.TabIndex = 8;
             this.btnOptionFour.Text = "Option";
             this.btnOptionFour.UseVisualStyleBackColor = false;
+            this.btnOptionFour.Click += new System.EventHandler(this.btnOptionFour_Click);
             // 
             // btnOptionThree
             // 
@@ -315,6 +319,7 @@
             this.btnOptionThree.TabIndex = 7;
             this.btnOptionThree.Text = "Option";
             this.btnOptionThree.UseVisualStyleBackColor = false;
+            this.btnOptionThree.Click += new System.EventHandler(this.btnOptionThree_Click);
             // 
             // btnOptionTwo
             // 
@@ -326,6 +331,7 @@
             this.btnOptionTwo.TabIndex = 6;
             this.btnOptionTwo.Text = "Option";
             this.btnOptionTwo.UseVisualStyleBackColor = false;
+            this.btnOptionTwo.Click += new System.EventHandler(this.btnOptionTwo_Click);
             // 
             // btnOptionOne
             // 
@@ -337,6 +343,7 @@
             this.btnOptionOne.TabIndex = 5;
             this.btnOptionOne.Text = "Option";
             this.btnOptionOne.UseVisualStyleBackColor = false;
+            this.btnOptionOne.Click += new System.EventHandler(this.btnOptionOne_Click);
             // 
             // lblQuestion
             // 
@@ -464,6 +471,11 @@
             this.lblAccuracy.TabIndex = 0;
             this.lblAccuracy.Text = "96%";
             // 
+            // tmrQuestion
+            // 
+            this.tmrQuestion.Interval = 1000;
+            this.tmrQuestion.Tick += new System.EventHandler(this.tmrQuestion_Tick);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -537,6 +549,7 @@
         private System.Windows.Forms.Label lblRank;
         private System.Windows.Forms.FlowLayoutPanel flwStatsLabels;
         private System.Windows.Forms.FlowLayoutPanel flwStatsValues;
+        private System.Windows.Forms.Timer tmrQuestion;
     }
 }
 

@@ -33,8 +33,8 @@ namespace MathBlitz
 
         // quiz related variables
         string selectedLevel = "";
-        List<MultiChoice> selectedMultiChoiceList;
-        List<TrueFalse> selectedTrueFalseList;
+        List<MultiChoice> selectedMultiChoiceList; // multi choice questions based on the selected level
+        List<TrueFalse> selectedTrueFalseList; // true false questions based on the selected level
         int questionsCount = 15; // 15 is the default number and if the questions available is less than that questionsCount changes
         int trueFalseQuota = 6; // maximum number of true false questions that can be asked
         int nTrueFalseAsked = 0; // the number of true false questions asked
@@ -48,6 +48,7 @@ namespace MathBlitz
         // common color values
         Color red = Color.FromArgb(1, 252, 155, 147);
         Color green = Color.FromArgb(1, 184, 242, 230);
+        Color blue = Color.FromArgb(1, 167, 226, 235);
 
 
         public frmMain()
@@ -171,14 +172,16 @@ namespace MathBlitz
             }
         }
 
-        private void CenterAlignQuestion(Label lbl)
+        private void CenterAlignLabel(Label lbl)
         {
             lbl.Location = new Point((tabQuestion.Width - lbl.Width) / 2, lbl.Location.Y);
         }
+
         private void SelectLevel(string level)
         {
             selectedLevel = level;
 
+            // loading the questions for the chosen level
             if (level == "Grandmaster")
             {
                 selectedMultiChoiceList = grandmasterMultiChoiceList;
@@ -196,6 +199,88 @@ namespace MathBlitz
             // updating these variables here prevents the possibility for infinite loops
             questionsCount = Math.Min(questionsCount, selectedMultiChoiceList.Count + selectedTrueFalseList.Count);
             trueFalseQuota = Math.Min(trueFalseQuota, selectedTrueFalseList.Count);
+
+            // displaying the questions tab and starting the questions
+            ResetTabs();
+            tbcCore.TabPages.Add(tabQuestion);
+            LoadNewQuestion();
+        }
+
+        private void EnableOptionButtons()
+        {
+            btnOptionOne.Enabled = true;
+            btnOptionTwo.Enabled = true;
+            btnOptionThree.Enabled = true;
+            btnOptionFour.Enabled = true;
+        }
+
+        private void DisableOptionButtons() {
+            btnOptionOne.Enabled = false;
+            btnOptionTwo.Enabled = false;
+            btnOptionThree.Enabled = false;
+            btnOptionFour.Enabled = false;
+        }
+
+        private void DisplayMutliChoiceQuestion()
+        {
+            // question text
+            lblQuestion.Text = currentMultiChoiceQuestion.QuestionText;
+
+            // options text
+            btnOptionOne.Text = currentMultiChoiceQuestion.Options[1];
+            btnOptionTwo.Text = currentMultiChoiceQuestion.Options[2];
+            btnOptionThree.Text = currentMultiChoiceQuestion.Options[3];
+            btnOptionFour.Text = currentMultiChoiceQuestion.Options[4];
+        }
+
+        private void DisplayTrueFalseQuestion()
+        {
+            // question text
+            lblQuestion.Text = currentTrueFalseQuestion.QuestionText;
+
+            // options text
+            btnOptionOne.Text = trueFalseOptions[0];
+            btnOptionTwo.Text = trueFalseOptions[1];
+        }
+
+        private void SetUpQuestionUI()
+        {
+            EnableOptionButtons();
+
+            // showing the question
+            if (currentQuestionType == "multi-choice")
+            {
+                btnOptionThree.Show();
+                btnOptionFour.Show();
+
+                DisplayMutliChoiceQuestion();
+
+            } else
+            {
+                btnOptionThree.Hide();
+                btnOptionFour.Hide();
+
+                DisplayTrueFalseQuestion();
+            }
+
+            // hiding the continue button
+            btnContinue.Hide();
+
+            // displaying the elapsed time
+            elapsedSeconds = 0;
+            lblElapsedTime.Text = "00:00";
+            tmrQuestion.Start();
+
+            // loading the question
+            lblQuestionCount.Text = $"{askedQuestionIds.Count}/{questionsCount}";
+            CenterAlignLabel(lblQuestion);
+            
+            // setting button colors
+            btnOptionOne.BackColor = Color.Transparent;
+            btnOptionTwo.BackColor = Color.Transparent;
+            btnOptionThree.BackColor = Color.Transparent;
+            btnOptionFour.BackColor = Color.Transparent;
+            btnContinue.BackColor = Color.Blue;
         }
 
         private void LoadNewQuestion()
@@ -203,16 +288,20 @@ namespace MathBlitz
             Random rand = new Random();
             int newQuestionType; // 0 - true false question, 1 - multi choice question
 
+            // randomly choosing the newQuestionType
             if (nTrueFalseAsked < trueFalseQuota)
             {
                 newQuestionType = rand.Next(2);
-            } else
+            }
+            else
             {
                 newQuestionType = 1;
             }
 
+            // loading a question from the chosen question type
             if (newQuestionType == 0)
             {
+                // loading a new true false question
                 int newQuestionIndex = rand.Next(selectedTrueFalseList.Count);
                 TrueFalse newQuestion = selectedTrueFalseList[newQuestionIndex];
                 string newQuestionId = newQuestion.Id;
@@ -221,12 +310,14 @@ namespace MathBlitz
                 {
                     newQuestionIndex = rand.Next(selectedTrueFalseList.Count);
                     newQuestion = selectedTrueFalseList[newQuestionIndex];
-                    newQuestionId = newQuestion.Id; 
+                    newQuestionId = newQuestion.Id;
                 }
 
                 currentQuestionType = "true-false";
                 currentTrueFalseQuestion = newQuestion;
-            } else
+                askedQuestionIds.Add(newQuestionId);
+            }
+            else
             {
                 int newQuestionIndex = rand.Next(selectedMultiChoiceList.Count);
                 MultiChoice newQuestion = selectedMultiChoiceList[newQuestionIndex];
@@ -238,34 +329,14 @@ namespace MathBlitz
                     newQuestion = selectedMultiChoiceList[newQuestionIndex];
                     newQuestionId = newQuestion.Id;
                 }
+
                 currentQuestionType = "multi-choice";
                 currentMultiChoiceQuestion = newQuestion;
-            }
-        }
-
-        private void SetUpQuestionUI()
-        {
-            // reset the colors (hide the below two options for multi choice)
-            if (currentQuestionType == "multi-choice")
-            {
-                btnOptionThree.Show();
-                btnOptionFour.Show();
-            } else
-            {
-                btnOptionThree.Hide();
-                btnOptionFour.Hide();
+                askedQuestionIds.Add(newQuestionId);
             }
 
-            elapsedSeconds = 0;
-            lblElapsedTime.Text = "00:00";
-            lblQuestionCount.Text = $"{askedQuestionIds.Count}/{questionsCount}";
-            
-            // setting button colors
-            btnOptionOne.BackColor = Color.Transparent;
-            btnOptionTwo.BackColor = Color.Transparent;
-            btnOptionThree.BackColor = Color.Transparent;
-            btnOptionFour.BackColor = Color.Transparent;
-            btnContinue.BackColor = Color.Transparent;
+            // setting up the UI and displaying the quesiton
+            SetUpQuestionUI();
         }
 
         private string GetTwoDigitNumberString(int num)
@@ -290,33 +361,40 @@ namespace MathBlitz
         {
             if (optionNum == 1)
             {
-                btnOptionOne.BackColor = green;
+                btnOptionOne.BackColor = color;
             }
             else if (optionNum == 2)
             {
-                btnOptionTwo.BackColor = green;
+                btnOptionTwo.BackColor = color;
             }
             else if (optionNum == 3)
             {
-                btnOptionThree.BackColor = green;
+                btnOptionThree.BackColor = color;
             }
             else
             {
-                btnOptionFour.BackColor = green;
+                btnOptionFour.BackColor = color;
             }
         }
 
         private void ValidateSelectedOption(int selectedOption)
         {
+            DisableOptionButtons();
+            btnContinue.Show();
+
+            // stopping the question timer
+            tmrQuestion.Stop();
+
             int correctOption;
 
+            // loading the correct option dynamically
             if (currentQuestionType == "multi-choice")
             {
                 correctOption = currentMultiChoiceQuestion.AnswerOptionNum;
             } else
             {
                 string correctTrueFalseAns = currentTrueFalseQuestion.Answer;
-                if (trueFalseOptions[selectedOption].ToLower() == correctTrueFalseAns.ToLower())
+                if (trueFalseOptions[selectedOption - 1].ToLower() == correctTrueFalseAns.ToLower())
                 {
                     correctOption = selectedOption;
                 } else
@@ -324,7 +402,7 @@ namespace MathBlitz
                     correctOption = selectedOption == 1 ? 0 : 1;
                 }
             }
-
+            
             if (selectedOption == correctOption)
             {
                 ColorOptionButton(selectedOption, green);
@@ -335,10 +413,21 @@ namespace MathBlitz
             }
         }
 
+        private void ResetTabs()
+        {
+            tbcCore.TabPages.Remove(tabQuizMode);
+            tbcCore.TabPages.Remove(tabQuestion);
+            tbcCore.TabPages.Remove(tabEndScreen);
+            tbcCore.TabPages.Remove(tabWelcome);
+        }
+
         private void frmMain_Load(object sender, EventArgs e)
         {
             LoadDataFile(mcqFilePath, "true-false-questions");
             RefreshLeaderboardDgv();
+
+            ResetTabs();
+            tbcCore.TabPages.Add(tabWelcome);
         }
 
         private void btnStartGame_Click(object sender, EventArgs e)
@@ -347,6 +436,10 @@ namespace MathBlitz
             if (nameInput != "")
             {
                 playerName = nameInput;
+
+                // loading the quiz mode tab
+                ResetTabs();
+                tbcCore.TabPages.Add(tabQuizMode);
             } else
             {
                 MessageBox.Show("Your username can't be empty :(");
@@ -356,6 +449,7 @@ namespace MathBlitz
         private void tmrQuestion_Tick(object sender, EventArgs e)
         {
             elapsedSeconds += 1;
+            DisplayElapsedTime();
         }
 
         private void btnOptionOne_Click(object sender, EventArgs e)
@@ -380,7 +474,22 @@ namespace MathBlitz
 
         private void btnContinue_Click(object sender, EventArgs e)
         {
+            LoadNewQuestion();
+        }
 
+        private void btnRookie_Click(object sender, EventArgs e)
+        {
+            SelectLevel("Rookie");
+        }
+
+        private void btnVeteran_Click(object sender, EventArgs e)
+        {
+            SelectLevel("Veteran");
+        }
+
+        private void btnGrandmaster_Click(object sender, EventArgs e)
+        {
+            SelectLevel("Grandmaster");
         }
     }
 }

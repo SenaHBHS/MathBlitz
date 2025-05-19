@@ -194,6 +194,7 @@
             this.btnRookie.TabIndex = 1;
             this.btnRookie.Text = "Rookie";
             this.btnRookie.UseVisualStyleBackColor = false;
+            this.btnRookie.Click += new System.EventHandler(this.btnRookie_Click);
             // 
             // btnVeteran
             // 
@@ -206,6 +207,7 @@
             this.btnVeteran.TabIndex = 2;
             this.btnVeteran.Text = "Veteran";
             this.btnVeteran.UseVisualStyleBackColor = false;
+            this.btnVeteran.Click += new System.EventHandler(this.btnVeteran_Click);
             // 
             // btnGrandmaster
             // 
@@ -218,6 +220,7 @@
             this.btnGrandmaster.TabIndex = 3;
             this.btnGrandmaster.Text = "Grandmaster";
             this.btnGrandmaster.UseVisualStyleBackColor = false;
+            this.btnGrandmaster.Click += new System.EventHandler(this.btnGrandmaster_Click);
             // 
             // lblSelectInstruction
             // 

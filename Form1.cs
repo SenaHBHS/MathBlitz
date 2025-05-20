@@ -46,9 +46,10 @@ namespace MathBlitz
         int elapsedSeconds = 0;
         
         // common color values
-        Color red = Color.FromArgb(1, 252, 155, 147);
-        Color green = Color.FromArgb(1, 184, 242, 230);
-        Color blue = Color.FromArgb(1, 167, 226, 235);
+        Color red = ColorTranslator.FromHtml("#FC9B93");
+        Color green = ColorTranslator.FromHtml("#B8F2E6");
+        Color blue = ColorTranslator.FromHtml("#A7E2EB");
+        // Color blue = Color.FromArgb(1, 167, 226, 235);
 
 
         public frmMain()
@@ -227,10 +228,10 @@ namespace MathBlitz
             lblQuestion.Text = currentMultiChoiceQuestion.QuestionText;
 
             // options text
-            btnOptionOne.Text = currentMultiChoiceQuestion.Options[1];
-            btnOptionTwo.Text = currentMultiChoiceQuestion.Options[2];
-            btnOptionThree.Text = currentMultiChoiceQuestion.Options[3];
-            btnOptionFour.Text = currentMultiChoiceQuestion.Options[4];
+            btnOptionOne.Text = currentMultiChoiceQuestion.Options[0];
+            btnOptionTwo.Text = currentMultiChoiceQuestion.Options[1];
+            btnOptionThree.Text = currentMultiChoiceQuestion.Options[2];
+            btnOptionFour.Text = currentMultiChoiceQuestion.Options[3];
         }
 
         private void DisplayTrueFalseQuestion()
@@ -280,7 +281,7 @@ namespace MathBlitz
             btnOptionTwo.BackColor = Color.Transparent;
             btnOptionThree.BackColor = Color.Transparent;
             btnOptionFour.BackColor = Color.Transparent;
-            btnContinue.BackColor = Color.Blue;
+            btnContinue.BackColor = blue;
         }
 
         private void LoadNewQuestion()
@@ -399,7 +400,7 @@ namespace MathBlitz
                     correctOption = selectedOption;
                 } else
                 {
-                    correctOption = selectedOption == 1 ? 0 : 1;
+                    correctOption = selectedOption == 2 ? 1 : 2;
                 }
             }
             
@@ -423,7 +424,9 @@ namespace MathBlitz
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            LoadDataFile(mcqFilePath, "true-false-questions");
+            LoadDataFile(mcqFilePath, "multi-choice-questions");
+            LoadDataFile(tfqFilePath, "true-false-questions");
+
             RefreshLeaderboardDgv();
 
             ResetTabs();

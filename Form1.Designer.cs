@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tbcCore = new System.Windows.Forms.TabControl();
-            this.tabWelcom = new System.Windows.Forms.TabPage();
+            this.tabWelcome = new System.Windows.Forms.TabPage();
             this.lblUsername = new System.Windows.Forms.Label();
             this.btnStartGame = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtUsername = new System.Windows.Forms.TextBox();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.lblSuperTitle = new System.Windows.Forms.Label();
             this.tabQuizMode = new System.Windows.Forms.TabPage();
@@ -53,31 +54,32 @@
             this.btnOptionOne = new System.Windows.Forms.Button();
             this.lblQuestion = new System.Windows.Forms.Label();
             this.tabEndScreen = new System.Windows.Forms.TabPage();
+            this.flwStatsValues = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblPiScore = new System.Windows.Forms.Label();
+            this.lblRank = new System.Windows.Forms.Label();
             this.flwStatsLabels = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTotalPiPoints = new System.Windows.Forms.Label();
             this.lblRankText = new System.Windows.Forms.Label();
-            this.lblRank = new System.Windows.Forms.Label();
-            this.lblPiScore = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.dgvLeaderboard = new System.Windows.Forms.DataGridView();
             this.lblCongrats = new System.Windows.Forms.Label();
             this.lblAccuracy = new System.Windows.Forms.Label();
-            this.flwStatsValues = new System.Windows.Forms.FlowLayoutPanel();
+            this.tmrQuestion = new System.Windows.Forms.Timer(this.components);
             this.tbcCore.SuspendLayout();
-            this.tabWelcom.SuspendLayout();
+            this.tabWelcome.SuspendLayout();
             this.tabQuizMode.SuspendLayout();
             this.flwQuizModes.SuspendLayout();
             this.tabQuestion.SuspendLayout();
             this.flwTopRowControls.SuspendLayout();
             this.tabEndScreen.SuspendLayout();
+            this.flwStatsValues.SuspendLayout();
             this.flwStatsLabels.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLeaderboard)).BeginInit();
-            this.flwStatsValues.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbcCore
             // 
-            this.tbcCore.Controls.Add(this.tabWelcom);
+            this.tbcCore.Controls.Add(this.tabWelcome);
             this.tbcCore.Controls.Add(this.tabQuizMode);
             this.tbcCore.Controls.Add(this.tabQuestion);
             this.tbcCore.Controls.Add(this.tabEndScreen);
@@ -89,22 +91,22 @@
             this.tbcCore.Size = new System.Drawing.Size(1084, 561);
             this.tbcCore.TabIndex = 0;
             // 
-            // tabWelcom
+            // tabWelcome
             // 
-            this.tabWelcom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
-            this.tabWelcom.Controls.Add(this.lblUsername);
-            this.tabWelcom.Controls.Add(this.btnStartGame);
-            this.tabWelcom.Controls.Add(this.textBox1);
-            this.tabWelcom.Controls.Add(this.lblWelcome);
-            this.tabWelcom.Controls.Add(this.lblSuperTitle);
-            this.tabWelcom.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabWelcom.Location = new System.Drawing.Point(4, 27);
-            this.tabWelcom.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabWelcom.Name = "tabWelcom";
-            this.tabWelcom.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tabWelcom.Size = new System.Drawing.Size(1076, 530);
-            this.tabWelcom.TabIndex = 0;
-            this.tabWelcom.Text = "Welcome";
+            this.tabWelcome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
+            this.tabWelcome.Controls.Add(this.lblUsername);
+            this.tabWelcome.Controls.Add(this.btnStartGame);
+            this.tabWelcome.Controls.Add(this.txtUsername);
+            this.tabWelcome.Controls.Add(this.lblWelcome);
+            this.tabWelcome.Controls.Add(this.lblSuperTitle);
+            this.tabWelcome.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabWelcome.Location = new System.Drawing.Point(4, 27);
+            this.tabWelcome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabWelcome.Name = "tabWelcome";
+            this.tabWelcome.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tabWelcome.Size = new System.Drawing.Size(1076, 530);
+            this.tabWelcome.TabIndex = 0;
+            this.tabWelcome.Text = "Welcome";
             // 
             // lblUsername
             // 
@@ -126,13 +128,14 @@
             this.btnStartGame.TabIndex = 3;
             this.btnStartGame.Text = "Start Quiz!";
             this.btnStartGame.UseVisualStyleBackColor = false;
+            this.btnStartGame.Click += new System.EventHandler(this.btnStartGame_Click);
             // 
-            // textBox1
+            // txtUsername
             // 
-            this.textBox1.Location = new System.Drawing.Point(521, 312);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(154, 30);
-            this.textBox1.TabIndex = 2;
+            this.txtUsername.Location = new System.Drawing.Point(521, 312);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(154, 30);
+            this.txtUsername.TabIndex = 2;
             // 
             // lblWelcome
             // 
@@ -191,6 +194,7 @@
             this.btnRookie.TabIndex = 1;
             this.btnRookie.Text = "Rookie";
             this.btnRookie.UseVisualStyleBackColor = false;
+            this.btnRookie.Click += new System.EventHandler(this.btnRookie_Click);
             // 
             // btnVeteran
             // 
@@ -203,6 +207,7 @@
             this.btnVeteran.TabIndex = 2;
             this.btnVeteran.Text = "Veteran";
             this.btnVeteran.UseVisualStyleBackColor = false;
+            this.btnVeteran.Click += new System.EventHandler(this.btnVeteran_Click);
             // 
             // btnGrandmaster
             // 
@@ -215,6 +220,7 @@
             this.btnGrandmaster.TabIndex = 3;
             this.btnGrandmaster.Text = "Grandmaster";
             this.btnGrandmaster.UseVisualStyleBackColor = false;
+            this.btnGrandmaster.Click += new System.EventHandler(this.btnGrandmaster_Click);
             // 
             // lblSelectInstruction
             // 
@@ -292,6 +298,7 @@
             this.btnContinue.TabIndex = 9;
             this.btnContinue.Text = "Continue";
             this.btnContinue.UseVisualStyleBackColor = false;
+            this.btnContinue.Click += new System.EventHandler(this.btnContinue_Click);
             // 
             // btnOptionFour
             // 
@@ -303,6 +310,7 @@
             this.btnOptionFour.TabIndex = 8;
             this.btnOptionFour.Text = "Option";
             this.btnOptionFour.UseVisualStyleBackColor = false;
+            this.btnOptionFour.Click += new System.EventHandler(this.btnOptionFour_Click);
             // 
             // btnOptionThree
             // 
@@ -314,6 +322,7 @@
             this.btnOptionThree.TabIndex = 7;
             this.btnOptionThree.Text = "Option";
             this.btnOptionThree.UseVisualStyleBackColor = false;
+            this.btnOptionThree.Click += new System.EventHandler(this.btnOptionThree_Click);
             // 
             // btnOptionTwo
             // 
@@ -325,6 +334,7 @@
             this.btnOptionTwo.TabIndex = 6;
             this.btnOptionTwo.Text = "Option";
             this.btnOptionTwo.UseVisualStyleBackColor = false;
+            this.btnOptionTwo.Click += new System.EventHandler(this.btnOptionTwo_Click);
             // 
             // btnOptionOne
             // 
@@ -336,6 +346,7 @@
             this.btnOptionOne.TabIndex = 5;
             this.btnOptionOne.Text = "Option";
             this.btnOptionOne.UseVisualStyleBackColor = false;
+            this.btnOptionOne.Click += new System.EventHandler(this.btnOptionOne_Click);
             // 
             // lblQuestion
             // 
@@ -363,6 +374,36 @@
             this.tabEndScreen.Size = new System.Drawing.Size(1076, 530);
             this.tabEndScreen.TabIndex = 3;
             this.tabEndScreen.Text = "Congrats";
+            // 
+            // flwStatsValues
+            // 
+            this.flwStatsValues.Controls.Add(this.lblPiScore);
+            this.flwStatsValues.Controls.Add(this.lblRank);
+            this.flwStatsValues.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flwStatsValues.Location = new System.Drawing.Point(840, 235);
+            this.flwStatsValues.Name = "flwStatsValues";
+            this.flwStatsValues.Size = new System.Drawing.Size(81, 62);
+            this.flwStatsValues.TabIndex = 9;
+            // 
+            // lblPiScore
+            // 
+            this.lblPiScore.AutoSize = true;
+            this.lblPiScore.Location = new System.Drawing.Point(3, 5);
+            this.lblPiScore.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblPiScore.Name = "lblPiScore";
+            this.lblPiScore.Size = new System.Drawing.Size(49, 23);
+            this.lblPiScore.TabIndex = 6;
+            this.lblPiScore.Text = "100π";
+            // 
+            // lblRank
+            // 
+            this.lblRank.AutoSize = true;
+            this.lblRank.Location = new System.Drawing.Point(3, 33);
+            this.lblRank.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
+            this.lblRank.Name = "lblRank";
+            this.lblRank.Size = new System.Drawing.Size(32, 23);
+            this.lblRank.TabIndex = 7;
+            this.lblRank.Text = "#2";
             // 
             // flwStatsLabels
             // 
@@ -395,26 +436,6 @@
             this.lblRankText.Size = new System.Drawing.Size(57, 23);
             this.lblRankText.TabIndex = 5;
             this.lblRankText.Text = "Rank:";
-            // 
-            // lblRank
-            // 
-            this.lblRank.AutoSize = true;
-            this.lblRank.Location = new System.Drawing.Point(3, 33);
-            this.lblRank.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
-            this.lblRank.Name = "lblRank";
-            this.lblRank.Size = new System.Drawing.Size(32, 23);
-            this.lblRank.TabIndex = 7;
-            this.lblRank.Text = "#2";
-            // 
-            // lblPiScore
-            // 
-            this.lblPiScore.AutoSize = true;
-            this.lblPiScore.Location = new System.Drawing.Point(3, 5);
-            this.lblPiScore.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
-            this.lblPiScore.Name = "lblPiScore";
-            this.lblPiScore.Size = new System.Drawing.Size(49, 23);
-            this.lblPiScore.TabIndex = 6;
-            this.lblPiScore.Text = "100π";
             // 
             // btnStart
             // 
@@ -453,15 +474,10 @@
             this.lblAccuracy.TabIndex = 0;
             this.lblAccuracy.Text = "96%";
             // 
-            // flwStatsValues
+            // tmrQuestion
             // 
-            this.flwStatsValues.Controls.Add(this.lblPiScore);
-            this.flwStatsValues.Controls.Add(this.lblRank);
-            this.flwStatsValues.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flwStatsValues.Location = new System.Drawing.Point(840, 235);
-            this.flwStatsValues.Name = "flwStatsValues";
-            this.flwStatsValues.Size = new System.Drawing.Size(81, 62);
-            this.flwStatsValues.TabIndex = 9;
+            this.tmrQuestion.Interval = 1000;
+            this.tmrQuestion.Tick += new System.EventHandler(this.tmrQuestion_Tick);
             // 
             // frmMain
             // 
@@ -477,9 +493,10 @@
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Text = "Math Blitz";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.tbcCore.ResumeLayout(false);
-            this.tabWelcom.ResumeLayout(false);
-            this.tabWelcom.PerformLayout();
+            this.tabWelcome.ResumeLayout(false);
+            this.tabWelcome.PerformLayout();
             this.tabQuizMode.ResumeLayout(false);
             this.tabQuizMode.PerformLayout();
             this.flwQuizModes.ResumeLayout(false);
@@ -489,11 +506,11 @@
             this.flwTopRowControls.PerformLayout();
             this.tabEndScreen.ResumeLayout(false);
             this.tabEndScreen.PerformLayout();
+            this.flwStatsValues.ResumeLayout(false);
+            this.flwStatsValues.PerformLayout();
             this.flwStatsLabels.ResumeLayout(false);
             this.flwStatsLabels.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLeaderboard)).EndInit();
-            this.flwStatsValues.ResumeLayout(false);
-            this.flwStatsValues.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -501,12 +518,12 @@
         #endregion
 
         private System.Windows.Forms.TabControl tbcCore;
-        private System.Windows.Forms.TabPage tabWelcom;
+        private System.Windows.Forms.TabPage tabWelcome;
         private System.Windows.Forms.TabPage tabQuizMode;
         private System.Windows.Forms.Label lblSuperTitle;
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Button btnStartGame;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblSelectInstruction;
         private System.Windows.Forms.Button btnRookie;
@@ -535,6 +552,7 @@
         private System.Windows.Forms.Label lblRank;
         private System.Windows.Forms.FlowLayoutPanel flwStatsLabels;
         private System.Windows.Forms.FlowLayoutPanel flwStatsValues;
+        private System.Windows.Forms.Timer tmrQuestion;
     }
 }
 

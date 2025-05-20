@@ -11,8 +11,8 @@ namespace MathBlitz
         public string Id { get; set; }
         public string QuestionText { get; set; }
         public string Answer { get; set; }
-        public string TimeLimitStr { get; set; } // in minutes
-        public string ScoreStr { get; set; }
+        public double TimeLimit { get; set; } // in minutes
+        public int Score { get; set; }
         public string Level { get; set; }
     }
 }

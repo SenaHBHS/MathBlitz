@@ -8,13 +8,13 @@ namespace MathBlitz
 {
     internal class TrueFalse : Question
     {
-        public TrueFalse(string id, string questionText, string answer, string timeLimitStr, string scoreStr, string level)
+        public TrueFalse(string id, string questionText, string answer, double timeLimit, int score, string level)
         {
             this.Id = id;
             this.QuestionText = questionText;
             this.Answer = answer;
-            this.TimeLimitStr = timeLimitStr;
-            this.ScoreStr = scoreStr;
+            this.TimeLimit = timeLimit;
+            this.Score = score;
             this.Level = level;
         }
     }

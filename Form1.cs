@@ -49,8 +49,6 @@ namespace MathBlitz
         Color red = ColorTranslator.FromHtml("#FC9B93");
         Color green = ColorTranslator.FromHtml("#B8F2E6");
         Color blue = ColorTranslator.FromHtml("#A7E2EB");
-        // Color blue = Color.FromArgb(1, 167, 226, 235);
-
 
         public frmMain()
         {
@@ -124,7 +122,7 @@ namespace MathBlitz
                                             // id,question,answer,time_limit,score,level,option_1,option_2,option_3,option_4
                                             string[] options = new string[mcqOptionsCount];
                                             // extracting the options (assumes the options are the last few fields)
-                                            Array.Copy(fields, baseFieldsNumber-1, options, 0, mcqOptionsCount);
+                                            Array.Copy(fields, baseFieldsNumber, options, 0, mcqOptionsCount);
 
                                             // creating a new question entry
                                             MultiChoice newMcQuestion = new MultiChoice(id, question, answer, timeLimit, score, level, options);
@@ -422,6 +420,29 @@ namespace MathBlitz
             tbcCore.TabPages.Remove(tabWelcome);
         }
 
+        private void StartQuiz()
+        {
+            string nameInput = txtUsername.Text;
+            if (nameInput != "")
+            {
+                playerName = nameInput;
+
+                // loading the quiz mode tab
+                ResetTabs();
+                tbcCore.TabPages.Add(tabQuizMode);
+            }
+            else
+            {
+                MessageBox.Show("Your username can't be empty :(");
+            }
+        }
+
+        private void EndQuiz()
+        {
+            ResetTabs();
+            tbcCore.TabPages.Add(tabEndScreen);
+        }
+
         private void frmMain_Load(object sender, EventArgs e)
         {
             LoadDataFile(mcqFilePath, "multi-choice-questions");
@@ -435,18 +456,7 @@ namespace MathBlitz
 
         private void btnStartGame_Click(object sender, EventArgs e)
         {
-            string nameInput = txtUsername.Text;
-            if (nameInput != "")
-            {
-                playerName = nameInput;
-
-                // loading the quiz mode tab
-                ResetTabs();
-                tbcCore.TabPages.Add(tabQuizMode);
-            } else
-            {
-                MessageBox.Show("Your username can't be empty :(");
-            }
+            StartQuiz();
         }
 
         private void tmrQuestion_Tick(object sender, EventArgs e)
@@ -477,7 +487,13 @@ namespace MathBlitz
 
         private void btnContinue_Click(object sender, EventArgs e)
         {
-            LoadNewQuestion();
+            if (askedQuestionIds.Count < questionsCount)
+            {
+                LoadNewQuestion();
+            } else
+            {
+                EndQuiz();
+            }
         }
 
         private void btnRookie_Click(object sender, EventArgs e)
@@ -493,6 +509,14 @@ namespace MathBlitz
         private void btnGrandmaster_Click(object sender, EventArgs e)
         {
             SelectLevel("Grandmaster");
+        }
+
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                StartQuiz();
+            }
         }
     }
 }

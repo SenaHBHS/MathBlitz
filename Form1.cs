@@ -168,14 +168,25 @@ namespace MathBlitz
                         }
                     }
                 }
+            } else
+            {
+                LogError($"File {filePath}: Not Found");
             }
         }
 
+        /// <summary>
+        /// aligns a label to the centre relative to the tab space
+        /// </summary>
+        /// <param name="lbl">label to be aligned</param>
         private void CenterAlignLabel(Label lbl)
         {
             lbl.Location = new Point((tabQuestion.Width - lbl.Width) / 2, lbl.Location.Y);
         }
 
+        /// <summary>
+        /// loads the selected level
+        /// </summary>
+        /// <param name="level">"Rookie", "Veteran" or "Grandmaster"</param>
         private void SelectLevel(string level)
         {
             selectedLevel = level;
@@ -205,6 +216,9 @@ namespace MathBlitz
             LoadNewQuestion();
         }
 
+        /// <summary>
+        /// enables the question option buttons and their responses
+        /// </summary>
         private void EnableOptionButtons()
         {
             btnOptionOne.Enabled = true;
@@ -213,6 +227,9 @@ namespace MathBlitz
             btnOptionFour.Enabled = true;
         }
 
+        /// <summary>
+        /// disables question option buttons
+        /// </summary>
         private void DisableOptionButtons() {
             btnOptionOne.Enabled = false;
             btnOptionTwo.Enabled = false;
@@ -220,6 +237,9 @@ namespace MathBlitz
             btnOptionFour.Enabled = false;
         }
 
+        /// <summary>
+        /// sets up the ui and display a multi choice question
+        /// </summary>
         private void DisplayMutliChoiceQuestion()
         {
             // question text
@@ -232,6 +252,9 @@ namespace MathBlitz
             btnOptionFour.Text = currentMultiChoiceQuestion.Options[3];
         }
 
+        /// <summary>
+        /// sets up the ui and display a true false choice question
+        /// </summary>
         private void DisplayTrueFalseQuestion()
         {
             // question text
@@ -242,6 +265,9 @@ namespace MathBlitz
             btnOptionTwo.Text = trueFalseOptions[1];
         }
 
+        /// <summary>
+        /// sets up the ui to load either a true false or a multi choice question
+        /// </summary>
         private void SetUpQuestionUI()
         {
             EnableOptionButtons();
@@ -282,6 +308,9 @@ namespace MathBlitz
             btnContinue.BackColor = blue;
         }
 
+        /// <summary>
+        /// loads a new question
+        /// </summary>
         private void LoadNewQuestion()
         {
             Random rand = new Random();
@@ -338,6 +367,11 @@ namespace MathBlitz
             SetUpQuestionUI();
         }
 
+        /// <summary>
+        /// turns a given integer number to a 2 digit string
+        /// </summary>
+        /// <param name="num">an integer below 100</param>
+        /// <returns></returns>
         private string GetTwoDigitNumberString(int num)
         {
             if (num < 10)
@@ -349,6 +383,9 @@ namespace MathBlitz
             }
         }
 
+        /// <summary>
+        /// displays the elapsed time in the MM:SS format
+        /// </summary>
         private void DisplayElapsedTime()
         {
             int nMinutes = elapsedSeconds / 60;
@@ -356,6 +393,11 @@ namespace MathBlitz
             lblElapsedTime.Text = $"{GetTwoDigitNumberString(nMinutes)}:{GetTwoDigitNumberString(nSeconds)}";
         }
 
+        /// <summary>
+        /// changes the background color of an option button
+        /// </summary>
+        /// <param name="optionNum">option number from 1-4</param>
+        /// <param name="color">color object for the background</param>
         private void ColorOptionButton(int optionNum, Color color)
         {
             if (optionNum == 1)
@@ -376,6 +418,10 @@ namespace MathBlitz
             }
         }
 
+        /// <summary>
+        /// validates the selected option and gives visual feedback
+        /// </summary>
+        /// <param name="selectedOption">option number the user selected</param>
         private void ValidateSelectedOption(int selectedOption)
         {
             DisableOptionButtons();
@@ -412,6 +458,9 @@ namespace MathBlitz
             }
         }
 
+        /// <summary>
+        /// hides all the tabs
+        /// </summary>
         private void ResetTabs()
         {
             tbcCore.TabPages.Remove(tabQuizMode);
@@ -420,6 +469,9 @@ namespace MathBlitz
             tbcCore.TabPages.Remove(tabWelcome);
         }
 
+        /// <summary>
+        /// validates the player name and starts the quiz
+        /// </summary>
         private void StartQuiz()
         {
             string nameInput = txtUsername.Text;
@@ -437,10 +489,27 @@ namespace MathBlitz
             }
         }
 
+        /// <summary>
+        /// shows the end screen
+        /// </summary>
         private void EndQuiz()
         {
             ResetTabs();
             tbcCore.TabPages.Add(tabEndScreen);
+        }
+
+        /// <summary>
+        /// starts a new game
+        /// </summary>
+        private void StartNewGame()
+        {
+            // resetting main game variables
+            playerName = "";
+            nTrueFalseAsked = 0; // the number of true false questions asked
+            askedQuestionIds = new List<string>(); // emptying the asked questions list
+
+            ResetTabs();
+            tbcCore.TabPages.Add(tabWelcome);
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -517,6 +586,16 @@ namespace MathBlitz
             {
                 StartQuiz();
             }
+        }
+
+        private void btnInstructions_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("- Select the correct answer to earn pi points\n- The faster you answer the more pi points you get");
+        }
+
+        private void btnNewGame_Click(object sender, EventArgs e)
+        {
+            StartNewGame();
         }
     }
 }

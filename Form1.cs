@@ -44,6 +44,7 @@ namespace MathBlitz
         TrueFalse currentTrueFalseQuestion;
         MultiChoice currentMultiChoiceQuestion;
         int elapsedSeconds = 0;
+        int piScore = 0;
         
         // common color values
         Color red = ColorTranslator.FromHtml("#FC9B93");
@@ -299,6 +300,11 @@ namespace MathBlitz
             // loading the question
             lblQuestionCount.Text = $"{askedQuestionIds.Count}/{questionsCount}";
             CenterAlignLabel(lblQuestion);
+
+
+            // setting pi points
+            lblPiPoints.Show();
+            lblPiPoints.Text = $"{piScore}π";
             
             // setting button colors
             btnOptionOne.BackColor = Color.Transparent;
@@ -365,6 +371,34 @@ namespace MathBlitz
 
             // setting up the UI and displaying the quesiton
             SetUpQuestionUI();
+        }
+
+        private void UpdateScore()
+        {
+            int baseScore;
+            double questionTimeLimit;
+            if (currentQuestionType == "multi-choice")
+            {
+                baseScore = currentMultiChoiceQuestion.Score;
+                questionTimeLimit = currentMultiChoiceQuestion.TimeLimit * 60;
+            } else
+            {
+                baseScore = currentTrueFalseQuestion.Score;
+                questionTimeLimit = currentTrueFalseQuestion.TimeLimit * 60;
+            }
+
+            if (elapsedSeconds >= questionTimeLimit)
+            {
+                piScore += baseScore;
+            } else
+            {
+                double remainingTime = questionTimeLimit - elapsedSeconds;
+                MessageBox.Show($"You have {remainingTime} left from the question's time limit: {questionTimeLimit}");
+                double extraPoints = Math.Round((remainingTime / questionTimeLimit) * (baseScore * 3));
+                piScore += (int)extraPoints + baseScore;
+            }
+
+            lblPiPoints.Text = $"{piScore}π";
         }
 
         /// <summary>
@@ -450,6 +484,7 @@ namespace MathBlitz
             
             if (selectedOption == correctOption)
             {
+                UpdateScore();
                 ColorOptionButton(selectedOption, green);
             } else
             {

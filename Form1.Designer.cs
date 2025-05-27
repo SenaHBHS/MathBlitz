@@ -47,7 +47,6 @@
             this.flwTopRowControls = new System.Windows.Forms.FlowLayoutPanel();
             this.lblQuestionCount = new System.Windows.Forms.Label();
             this.lblElapsedTime = new System.Windows.Forms.Label();
-            this.lblPiPoints = new System.Windows.Forms.Label();
             this.btnContinue = new System.Windows.Forms.Button();
             this.btnOptionFour = new System.Windows.Forms.Button();
             this.btnOptionThree = new System.Windows.Forms.Button();
@@ -66,6 +65,7 @@
             this.lblCongrats = new System.Windows.Forms.Label();
             this.lblAccuracy = new System.Windows.Forms.Label();
             this.tmrQuestion = new System.Windows.Forms.Timer(this.components);
+            this.lblPiPoints = new System.Windows.Forms.Label();
             this.tbcCore.SuspendLayout();
             this.tabWelcome.SuspendLayout();
             this.tabQuizMode.SuspendLayout();
@@ -250,6 +250,7 @@
             // tabQuestion
             // 
             this.tabQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
+            this.tabQuestion.Controls.Add(this.lblPiPoints);
             this.tabQuestion.Controls.Add(this.flwTopRowControls);
             this.tabQuestion.Controls.Add(this.btnContinue);
             this.tabQuestion.Controls.Add(this.btnOptionFour);
@@ -269,7 +270,6 @@
             // 
             this.flwTopRowControls.Controls.Add(this.lblQuestionCount);
             this.flwTopRowControls.Controls.Add(this.lblElapsedTime);
-            this.flwTopRowControls.Controls.Add(this.lblPiPoints);
             this.flwTopRowControls.Location = new System.Drawing.Point(62, 20);
             this.flwTopRowControls.Name = "flwTopRowControls";
             this.flwTopRowControls.Size = new System.Drawing.Size(952, 28);
@@ -294,15 +294,6 @@
             this.lblElapsedTime.Size = new System.Drawing.Size(50, 23);
             this.lblElapsedTime.TabIndex = 3;
             this.lblElapsedTime.Text = "01:30";
-            // 
-            // lblPiPoints
-            // 
-            this.lblPiPoints.AutoSize = true;
-            this.lblPiPoints.Location = new System.Drawing.Point(899, 0);
-            this.lblPiPoints.Name = "lblPiPoints";
-            this.lblPiPoints.Size = new System.Drawing.Size(49, 23);
-            this.lblPiPoints.TabIndex = 4;
-            this.lblPiPoints.Text = "100π";
             // 
             // btnContinue
             // 
@@ -496,6 +487,15 @@
             this.tmrQuestion.Interval = 1000;
             this.tmrQuestion.Tick += new System.EventHandler(this.tmrQuestion_Tick);
             // 
+            // lblPiPoints
+            // 
+            this.lblPiPoints.AutoSize = true;
+            this.lblPiPoints.Location = new System.Drawing.Point(975, 20);
+            this.lblPiPoints.Name = "lblPiPoints";
+            this.lblPiPoints.Size = new System.Drawing.Size(36, 23);
+            this.lblPiPoints.TabIndex = 11;
+            this.lblPiPoints.Text = "100";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 18F);
@@ -551,7 +551,6 @@
         private System.Windows.Forms.Label lblQuestion;
         private System.Windows.Forms.Label lblQuestionCount;
         private System.Windows.Forms.Label lblElapsedTime;
-        private System.Windows.Forms.Label lblPiPoints;
         private System.Windows.Forms.Button btnOptionOne;
         private System.Windows.Forms.Button btnOptionFour;
         private System.Windows.Forms.Button btnOptionThree;
@@ -571,6 +570,7 @@
         private System.Windows.Forms.FlowLayoutPanel flwStatsValues;
         private System.Windows.Forms.Timer tmrQuestion;
         private System.Windows.Forms.Button btnInstructions;
+        private System.Windows.Forms.Label lblPiPoints;
     }
 }
 

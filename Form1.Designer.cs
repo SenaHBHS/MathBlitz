@@ -31,10 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.tbcCore = new System.Windows.Forms.TabControl();
             this.tabWelcome = new System.Windows.Forms.TabPage();
+            this.btnInstructions = new System.Windows.Forms.Button();
             this.lblUsername = new System.Windows.Forms.Label();
             this.btnStartGame = new System.Windows.Forms.Button();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.lblWelcome = new System.Windows.Forms.Label();
+            this.lblTagline = new System.Windows.Forms.Label();
             this.lblSuperTitle = new System.Windows.Forms.Label();
             this.tabQuizMode = new System.Windows.Forms.TabPage();
             this.flwQuizModes = new System.Windows.Forms.FlowLayoutPanel();
@@ -60,7 +61,7 @@
             this.flwStatsLabels = new System.Windows.Forms.FlowLayoutPanel();
             this.lblTotalPiPoints = new System.Windows.Forms.Label();
             this.lblRankText = new System.Windows.Forms.Label();
-            this.btnStart = new System.Windows.Forms.Button();
+            this.btnNewGame = new System.Windows.Forms.Button();
             this.dgvLeaderboard = new System.Windows.Forms.DataGridView();
             this.lblCongrats = new System.Windows.Forms.Label();
             this.lblAccuracy = new System.Windows.Forms.Label();
@@ -94,10 +95,11 @@
             // tabWelcome
             // 
             this.tabWelcome.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
+            this.tabWelcome.Controls.Add(this.btnInstructions);
             this.tabWelcome.Controls.Add(this.lblUsername);
             this.tabWelcome.Controls.Add(this.btnStartGame);
             this.tabWelcome.Controls.Add(this.txtUsername);
-            this.tabWelcome.Controls.Add(this.lblWelcome);
+            this.tabWelcome.Controls.Add(this.lblTagline);
             this.tabWelcome.Controls.Add(this.lblSuperTitle);
             this.tabWelcome.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabWelcome.Location = new System.Drawing.Point(4, 27);
@@ -108,10 +110,22 @@
             this.tabWelcome.TabIndex = 0;
             this.tabWelcome.Text = "Welcome";
             // 
+            // btnInstructions
+            // 
+            this.btnInstructions.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
+            this.btnInstructions.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInstructions.Location = new System.Drawing.Point(463, 391);
+            this.btnInstructions.Name = "btnInstructions";
+            this.btnInstructions.Size = new System.Drawing.Size(159, 32);
+            this.btnInstructions.TabIndex = 5;
+            this.btnInstructions.Text = "Instructions";
+            this.btnInstructions.UseVisualStyleBackColor = false;
+            this.btnInstructions.Click += new System.EventHandler(this.btnInstructions_Click);
+            // 
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(409, 315);
+            this.lblUsername.Location = new System.Drawing.Point(409, 278);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(106, 23);
             this.lblUsername.TabIndex = 4;
@@ -122,9 +136,9 @@
             this.btnStartGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(221)))));
             this.btnStartGame.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(226)))), ((int)(((byte)(235)))));
             this.btnStartGame.FlatAppearance.BorderSize = 0;
-            this.btnStartGame.Location = new System.Drawing.Point(479, 359);
+            this.btnStartGame.Location = new System.Drawing.Point(438, 429);
             this.btnStartGame.Name = "btnStartGame";
-            this.btnStartGame.Size = new System.Drawing.Size(120, 32);
+            this.btnStartGame.Size = new System.Drawing.Size(209, 56);
             this.btnStartGame.TabIndex = 3;
             this.btnStartGame.Text = "Start Quiz!";
             this.btnStartGame.UseVisualStyleBackColor = false;
@@ -132,27 +146,28 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(521, 312);
+            this.txtUsername.Location = new System.Drawing.Point(521, 275);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(154, 30);
             this.txtUsername.TabIndex = 2;
+            this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
-            // lblWelcome
+            // lblTagline
             // 
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Bahnschrift SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWelcome.Location = new System.Drawing.Point(459, 105);
-            this.lblWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(158, 33);
-            this.lblWelcome.TabIndex = 1;
-            this.lblWelcome.Text = "Welcome To";
+            this.lblTagline.AutoSize = true;
+            this.lblTagline.Font = new System.Drawing.Font("Bahnschrift SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTagline.Location = new System.Drawing.Point(389, 121);
+            this.lblTagline.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTagline.Name = "lblTagline";
+            this.lblTagline.Size = new System.Drawing.Size(306, 33);
+            this.lblTagline.TabIndex = 1;
+            this.lblTagline.Text = "Speedy Level 3 Calculus";
             // 
             // lblSuperTitle
             // 
             this.lblSuperTitle.AutoSize = true;
             this.lblSuperTitle.Font = new System.Drawing.Font("Bahnschrift", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSuperTitle.Location = new System.Drawing.Point(378, 138);
+            this.lblSuperTitle.Location = new System.Drawing.Point(382, 44);
             this.lblSuperTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSuperTitle.Name = "lblSuperTitle";
             this.lblSuperTitle.Size = new System.Drawing.Size(320, 77);
@@ -226,11 +241,11 @@
             // 
             this.lblSelectInstruction.AutoSize = true;
             this.lblSelectInstruction.Font = new System.Drawing.Font("Bahnschrift", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectInstruction.Location = new System.Drawing.Point(427, 143);
+            this.lblSelectInstruction.Location = new System.Drawing.Point(440, 143);
             this.lblSelectInstruction.Name = "lblSelectInstruction";
-            this.lblSelectInstruction.Size = new System.Drawing.Size(222, 33);
+            this.lblSelectInstruction.Size = new System.Drawing.Size(205, 33);
             this.lblSelectInstruction.TabIndex = 0;
-            this.lblSelectInstruction.Text = "Select Quiz Mode";
+            this.lblSelectInstruction.Text = "Select Difficulty";
             // 
             // tabQuestion
             // 
@@ -363,7 +378,7 @@
             this.tabEndScreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
             this.tabEndScreen.Controls.Add(this.flwStatsValues);
             this.tabEndScreen.Controls.Add(this.flwStatsLabels);
-            this.tabEndScreen.Controls.Add(this.btnStart);
+            this.tabEndScreen.Controls.Add(this.btnNewGame);
             this.tabEndScreen.Controls.Add(this.dgvLeaderboard);
             this.tabEndScreen.Controls.Add(this.lblCongrats);
             this.tabEndScreen.Controls.Add(this.lblAccuracy);
@@ -380,7 +395,7 @@
             this.flwStatsValues.Controls.Add(this.lblPiScore);
             this.flwStatsValues.Controls.Add(this.lblRank);
             this.flwStatsValues.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flwStatsValues.Location = new System.Drawing.Point(840, 235);
+            this.flwStatsValues.Location = new System.Drawing.Point(837, 261);
             this.flwStatsValues.Name = "flwStatsValues";
             this.flwStatsValues.Size = new System.Drawing.Size(81, 62);
             this.flwStatsValues.TabIndex = 9;
@@ -410,7 +425,7 @@
             this.flwStatsLabels.Controls.Add(this.lblTotalPiPoints);
             this.flwStatsLabels.Controls.Add(this.lblRankText);
             this.flwStatsLabels.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flwStatsLabels.Location = new System.Drawing.Point(692, 235);
+            this.flwStatsLabels.Location = new System.Drawing.Point(692, 261);
             this.flwStatsLabels.Name = "flwStatsLabels";
             this.flwStatsLabels.Size = new System.Drawing.Size(139, 62);
             this.flwStatsLabels.TabIndex = 8;
@@ -437,15 +452,16 @@
             this.lblRankText.TabIndex = 5;
             this.lblRankText.Text = "Rank:";
             // 
-            // btnStart
+            // btnNewGame
             // 
-            this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(221)))));
-            this.btnStart.Location = new System.Drawing.Point(732, 453);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(169, 44);
-            this.btnStart.TabIndex = 3;
-            this.btnStart.Text = "New Game";
-            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnNewGame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(221)))));
+            this.btnNewGame.Location = new System.Drawing.Point(716, 459);
+            this.btnNewGame.Name = "btnNewGame";
+            this.btnNewGame.Size = new System.Drawing.Size(169, 44);
+            this.btnNewGame.TabIndex = 3;
+            this.btnNewGame.Text = "New Game";
+            this.btnNewGame.UseVisualStyleBackColor = false;
+            this.btnNewGame.Click += new System.EventHandler(this.btnNewGame_Click);
             // 
             // dgvLeaderboard
             // 
@@ -458,9 +474,10 @@
             // lblCongrats
             // 
             this.lblCongrats.AutoSize = true;
-            this.lblCongrats.Location = new System.Drawing.Point(732, 38);
+            this.lblCongrats.Font = new System.Drawing.Font("Bahnschrift SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCongrats.Location = new System.Drawing.Point(686, 28);
             this.lblCongrats.Name = "lblCongrats";
-            this.lblCongrats.Size = new System.Drawing.Size(162, 23);
+            this.lblCongrats.Size = new System.Drawing.Size(228, 33);
             this.lblCongrats.TabIndex = 1;
             this.lblCongrats.Text = "Yay! You Finished!";
             // 
@@ -468,7 +485,7 @@
             // 
             this.lblAccuracy.AutoSize = true;
             this.lblAccuracy.Font = new System.Drawing.Font("Bahnschrift", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAccuracy.Location = new System.Drawing.Point(781, 87);
+            this.lblAccuracy.Location = new System.Drawing.Point(765, 71);
             this.lblAccuracy.Name = "lblAccuracy";
             this.lblAccuracy.Size = new System.Drawing.Size(70, 39);
             this.lblAccuracy.TabIndex = 0;
@@ -521,7 +538,7 @@
         private System.Windows.Forms.TabPage tabWelcome;
         private System.Windows.Forms.TabPage tabQuizMode;
         private System.Windows.Forms.Label lblSuperTitle;
-        private System.Windows.Forms.Label lblWelcome;
+        private System.Windows.Forms.Label lblTagline;
         private System.Windows.Forms.Button btnStartGame;
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label lblUsername;
@@ -543,7 +560,7 @@
         private System.Windows.Forms.Label lblAccuracy;
         private System.Windows.Forms.Label lblCongrats;
         private System.Windows.Forms.DataGridView dgvLeaderboard;
-        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Button btnNewGame;
         private System.Windows.Forms.Label lblTotalPiPoints;
         private System.Windows.Forms.Label lblRankText;
         private System.Windows.Forms.FlowLayoutPanel flwQuizModes;
@@ -553,6 +570,7 @@
         private System.Windows.Forms.FlowLayoutPanel flwStatsLabels;
         private System.Windows.Forms.FlowLayoutPanel flwStatsValues;
         private System.Windows.Forms.Timer tmrQuestion;
+        private System.Windows.Forms.Button btnInstructions;
     }
 }
 

@@ -45,6 +45,7 @@ namespace MathBlitz
         MultiChoice currentMultiChoiceQuestion;
         int elapsedSeconds = 0;
         int piScore = 0;
+        int correctAnswerCount = 0; // the number of correct answeres
         
         // common color values
         Color red = ColorTranslator.FromHtml("#FC9B93");
@@ -393,8 +394,7 @@ namespace MathBlitz
             } else
             {
                 double remainingTime = questionTimeLimit - elapsedSeconds;
-                MessageBox.Show($"You have {remainingTime} left from the question's time limit: {questionTimeLimit}");
-                double extraPoints = Math.Round((remainingTime / questionTimeLimit) * (baseScore * 3));
+                double extraPoints = Math.Round((remainingTime / questionTimeLimit) * (baseScore * 4));
                 piScore += (int)extraPoints + baseScore;
             }
 
@@ -485,6 +485,7 @@ namespace MathBlitz
             if (selectedOption == correctOption)
             {
                 UpdateScore();
+                correctAnswerCount += 1;
                 ColorOptionButton(selectedOption, green);
             } else
             {
@@ -531,6 +532,11 @@ namespace MathBlitz
         {
             ResetTabs();
             tbcCore.TabPages.Add(tabEndScreen);
+
+            // set up the ui
+            lblPiScore.Text = $"{piScore}π";
+            double accuracy = double.Parse(correctAnswerCount.ToString()) / double.Parse(questionsCount.ToString());
+            lblAccuracy.Text = $"{Math.Round(accuracy * 100, 1)}%";
         }
 
         /// <summary>

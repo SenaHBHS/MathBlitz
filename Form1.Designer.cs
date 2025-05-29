@@ -44,6 +44,7 @@
             this.btnGrandmaster = new System.Windows.Forms.Button();
             this.lblSelectInstruction = new System.Windows.Forms.Label();
             this.tabQuestion = new System.Windows.Forms.TabPage();
+            this.lblPiPoints = new System.Windows.Forms.Label();
             this.flwTopRowControls = new System.Windows.Forms.FlowLayoutPanel();
             this.lblQuestionCount = new System.Windows.Forms.Label();
             this.lblElapsedTime = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@
             this.lblCongrats = new System.Windows.Forms.Label();
             this.lblAccuracy = new System.Windows.Forms.Label();
             this.tmrQuestion = new System.Windows.Forms.Timer(this.components);
-            this.lblPiPoints = new System.Windows.Forms.Label();
             this.tbcCore.SuspendLayout();
             this.tabWelcome.SuspendLayout();
             this.tabQuizMode.SuspendLayout();
@@ -266,6 +266,15 @@
             this.tabQuestion.TabIndex = 2;
             this.tabQuestion.Text = "Question";
             // 
+            // lblPiPoints
+            // 
+            this.lblPiPoints.AutoSize = true;
+            this.lblPiPoints.Location = new System.Drawing.Point(975, 20);
+            this.lblPiPoints.Name = "lblPiPoints";
+            this.lblPiPoints.Size = new System.Drawing.Size(36, 23);
+            this.lblPiPoints.TabIndex = 11;
+            this.lblPiPoints.Text = "100";
+            // 
             // flwTopRowControls
             // 
             this.flwTopRowControls.Controls.Add(this.lblQuestionCount);
@@ -456,9 +465,15 @@
             // 
             // dgvLeaderboard
             // 
+            this.dgvLeaderboard.AllowUserToAddRows = false;
+            this.dgvLeaderboard.AllowUserToDeleteRows = false;
+            this.dgvLeaderboard.AllowUserToResizeRows = false;
             this.dgvLeaderboard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLeaderboard.Location = new System.Drawing.Point(28, 28);
+            this.dgvLeaderboard.MultiSelect = false;
             this.dgvLeaderboard.Name = "dgvLeaderboard";
+            this.dgvLeaderboard.ReadOnly = true;
+            this.dgvLeaderboard.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLeaderboard.Size = new System.Drawing.Size(464, 475);
             this.dgvLeaderboard.TabIndex = 2;
             // 
@@ -486,15 +501,6 @@
             // 
             this.tmrQuestion.Interval = 1000;
             this.tmrQuestion.Tick += new System.EventHandler(this.tmrQuestion_Tick);
-            // 
-            // lblPiPoints
-            // 
-            this.lblPiPoints.AutoSize = true;
-            this.lblPiPoints.Location = new System.Drawing.Point(975, 20);
-            this.lblPiPoints.Name = "lblPiPoints";
-            this.lblPiPoints.Size = new System.Drawing.Size(36, 23);
-            this.lblPiPoints.TabIndex = 11;
-            this.lblPiPoints.Text = "100";
             // 
             // frmMain
             // 

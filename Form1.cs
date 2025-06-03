@@ -17,6 +17,10 @@ namespace MathBlitz
 
         string playerName = "";
 
+        // past player scores
+        string playerScoresPath = Path.Combine(Application.StartupPath, "player_scores.csv");
+        List<PlayerScore> playerScores = new List<PlayerScore>();
+
         // question data related
         string mcqFilePath = Path.Combine(Application.StartupPath, "math_blitz_multiple_choice.csv"); // path to multi choice questions
         string tfqFilePath = Path.Combine(Application.StartupPath, "math_blitz_true_false.csv"); // path to true false questions
@@ -44,6 +48,8 @@ namespace MathBlitz
         TrueFalse currentTrueFalseQuestion;
         MultiChoice currentMultiChoiceQuestion;
         int elapsedSeconds = 0;
+        int piScore = 0;
+        int correctAnswerCount = 0; // the number of correct answeres
         
         // common color values
         Color red = ColorTranslator.FromHtml("#FC9B93");
@@ -56,12 +62,46 @@ namespace MathBlitz
         }
 
         /// <summary>
-        /// refreshes the datagrid view by resetting its data source
+        /// displays the leaderboard
         /// </summary>
-        private void RefreshLeaderboardDgv()
+        private void ShowLeaderboard()
         {
+            List<PlayerScore> sortedScores = playerScores.OrderByDescending(d => Convert.ToInt32(d.Score)).ToList(); // sorting the player scores by score
+            int playerRank = 0;
+            int currentPlayerIndex = 0;
+
+            for (int i = 0; i < sortedScores.Count; i++)
+            {
+                PlayerScore currentPlayer = sortedScores[i];
+                int currentRank = i + 1;
+                currentPlayer.Position = currentRank;
+
+                if (currentPlayer.Name == playerName && currentPlayer.Score == piScore)
+                {
+                    playerRank = currentRank;
+                    currentPlayerIndex = i;
+                }
+            }
+
+
+            lblRank.Text = $"#{playerRank}";
+
             dgvLeaderboard.DataSource = null;
-            dgvLeaderboard.DataSource = null; // TODO: wire up the data list later
+            dgvLeaderboard.DataSource = sortedScores;
+
+            // highlighting the current score
+            dgvLeaderboard.Rows[currentPlayerIndex].DefaultCellStyle.BackColor = blue;
+        }
+
+        private void SaveScoreData()
+        {
+            using (StreamWriter sw = new StreamWriter(playerScoresPath, true))
+            {
+                foreach (PlayerScore player in playerScores)
+                {
+                    sw.WriteLine($"{player.Name}, {player.Score}");
+                }
+            }
         }
 
         /// <summary>
@@ -83,7 +123,7 @@ namespace MathBlitz
         /// loads data from a csv file and turns them into a list of objects
         /// </summary>
         /// <param name="filePath">file path to read the data from</param>
-        /// <param name="loadDataType">data type can be "true-false-questions", "multi-choice-questions" or "leaderboard-data"</param>
+        /// <param name="loadDataType">data type can be "true-false-questions", "multi-choice-questions" or "player-scores"</param>
         private void LoadDataFile(string filePath, string loadDataType)
         {
             if (File.Exists(filePath))
@@ -156,6 +196,25 @@ namespace MathBlitz
                                     } else
                                     {
                                         LogError($"Line {lineNo}: The score or the time is non-numerical");
+                                    }
+                                } else
+                                {
+                                    LogError($"Line {lineNo}: Missing necessary questions data fields");
+                                }
+                            } else if (loadDataType == "player-scores")
+                            {
+                                if (fields.Length >= 2)
+                                {
+                                    string name = fields[0];
+                                    string scoreStr = fields[1];
+                                    bool isScoreNumeric = int.TryParse(scoreStr, out int score);
+                                    if (isScoreNumeric)
+                                    {
+                                        PlayerScore newPlayerScore = new PlayerScore(name, score, 1); // #1 rank is set by default for now. the actual position is calculated later
+                                        playerScores.Add(newPlayerScore);
+                                    } else
+                                    {
+                                        LogError($"Line {lineNo}: The score is non-numerical");
                                     }
                                 } else
                                 {
@@ -299,6 +358,11 @@ namespace MathBlitz
             // loading the question
             lblQuestionCount.Text = $"{askedQuestionIds.Count}/{questionsCount}";
             CenterAlignLabel(lblQuestion);
+
+
+            // setting pi points
+            lblPiPoints.Show();
+            lblPiPoints.Text = $"{piScore}π";
             
             // setting button colors
             btnOptionOne.BackColor = Color.Transparent;
@@ -365,6 +429,33 @@ namespace MathBlitz
 
             // setting up the UI and displaying the quesiton
             SetUpQuestionUI();
+        }
+
+        private void UpdateScore()
+        {
+            int baseScore;
+            double questionTimeLimit;
+            if (currentQuestionType == "multi-choice")
+            {
+                baseScore = currentMultiChoiceQuestion.Score;
+                questionTimeLimit = currentMultiChoiceQuestion.TimeLimit * 60;
+            } else
+            {
+                baseScore = currentTrueFalseQuestion.Score;
+                questionTimeLimit = currentTrueFalseQuestion.TimeLimit * 60;
+            }
+
+            if (elapsedSeconds >= questionTimeLimit)
+            {
+                piScore += baseScore;
+            } else
+            {
+                double remainingTime = questionTimeLimit - elapsedSeconds;
+                double extraPoints = Math.Round((remainingTime / questionTimeLimit) * (baseScore * 4));
+                piScore += (int)extraPoints + baseScore;
+            }
+
+            lblPiPoints.Text = $"{piScore}π";
         }
 
         /// <summary>
@@ -450,6 +541,8 @@ namespace MathBlitz
             
             if (selectedOption == correctOption)
             {
+                UpdateScore();
+                correctAnswerCount += 1;
                 ColorOptionButton(selectedOption, green);
             } else
             {
@@ -496,6 +589,16 @@ namespace MathBlitz
         {
             ResetTabs();
             tbcCore.TabPages.Add(tabEndScreen);
+
+            // set up the ui
+            lblPiScore.Text = $"{piScore}π";
+            double accuracy = double.Parse(correctAnswerCount.ToString()) / double.Parse(questionsCount.ToString());
+            lblAccuracy.Text = $"{Math.Round(accuracy * 100, 1)}%";
+
+            // displaying score stats
+            LoadDataFile(playerScoresPath, "player-scores");
+            playerScores.Add(new PlayerScore(playerName, piScore, 1)); // current player score is added to the list
+            ShowLeaderboard();
         }
 
         /// <summary>
@@ -505,19 +608,19 @@ namespace MathBlitz
         {
             // resetting main game variables
             playerName = "";
+            piScore = 0;
             nTrueFalseAsked = 0; // the number of true false questions asked
             askedQuestionIds = new List<string>(); // emptying the asked questions list
 
             ResetTabs();
             tbcCore.TabPages.Add(tabWelcome);
+            txtUsername.Text = "";
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             LoadDataFile(mcqFilePath, "multi-choice-questions");
             LoadDataFile(tfqFilePath, "true-false-questions");
-
-            RefreshLeaderboardDgv();
 
             ResetTabs();
             tbcCore.TabPages.Add(tabWelcome);

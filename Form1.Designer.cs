@@ -44,10 +44,10 @@
             this.btnGrandmaster = new System.Windows.Forms.Button();
             this.lblSelectInstruction = new System.Windows.Forms.Label();
             this.tabQuestion = new System.Windows.Forms.TabPage();
+            this.lblPiPoints = new System.Windows.Forms.Label();
             this.flwTopRowControls = new System.Windows.Forms.FlowLayoutPanel();
             this.lblQuestionCount = new System.Windows.Forms.Label();
             this.lblElapsedTime = new System.Windows.Forms.Label();
-            this.lblPiPoints = new System.Windows.Forms.Label();
             this.btnContinue = new System.Windows.Forms.Button();
             this.btnOptionFour = new System.Windows.Forms.Button();
             this.btnOptionThree = new System.Windows.Forms.Button();
@@ -250,6 +250,7 @@
             // tabQuestion
             // 
             this.tabQuestion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(244)))), ((int)(((byte)(247)))));
+            this.tabQuestion.Controls.Add(this.lblPiPoints);
             this.tabQuestion.Controls.Add(this.flwTopRowControls);
             this.tabQuestion.Controls.Add(this.btnContinue);
             this.tabQuestion.Controls.Add(this.btnOptionFour);
@@ -265,11 +266,19 @@
             this.tabQuestion.TabIndex = 2;
             this.tabQuestion.Text = "Question";
             // 
+            // lblPiPoints
+            // 
+            this.lblPiPoints.AutoSize = true;
+            this.lblPiPoints.Location = new System.Drawing.Point(975, 20);
+            this.lblPiPoints.Name = "lblPiPoints";
+            this.lblPiPoints.Size = new System.Drawing.Size(36, 23);
+            this.lblPiPoints.TabIndex = 11;
+            this.lblPiPoints.Text = "100";
+            // 
             // flwTopRowControls
             // 
             this.flwTopRowControls.Controls.Add(this.lblQuestionCount);
             this.flwTopRowControls.Controls.Add(this.lblElapsedTime);
-            this.flwTopRowControls.Controls.Add(this.lblPiPoints);
             this.flwTopRowControls.Location = new System.Drawing.Point(62, 20);
             this.flwTopRowControls.Name = "flwTopRowControls";
             this.flwTopRowControls.Size = new System.Drawing.Size(952, 28);
@@ -294,15 +303,6 @@
             this.lblElapsedTime.Size = new System.Drawing.Size(50, 23);
             this.lblElapsedTime.TabIndex = 3;
             this.lblElapsedTime.Text = "01:30";
-            // 
-            // lblPiPoints
-            // 
-            this.lblPiPoints.AutoSize = true;
-            this.lblPiPoints.Location = new System.Drawing.Point(899, 0);
-            this.lblPiPoints.Name = "lblPiPoints";
-            this.lblPiPoints.Size = new System.Drawing.Size(49, 23);
-            this.lblPiPoints.TabIndex = 4;
-            this.lblPiPoints.Text = "100π";
             // 
             // btnContinue
             // 
@@ -465,9 +465,15 @@
             // 
             // dgvLeaderboard
             // 
+            this.dgvLeaderboard.AllowUserToAddRows = false;
+            this.dgvLeaderboard.AllowUserToDeleteRows = false;
+            this.dgvLeaderboard.AllowUserToResizeRows = false;
             this.dgvLeaderboard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLeaderboard.Location = new System.Drawing.Point(28, 28);
+            this.dgvLeaderboard.MultiSelect = false;
             this.dgvLeaderboard.Name = "dgvLeaderboard";
+            this.dgvLeaderboard.ReadOnly = true;
+            this.dgvLeaderboard.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvLeaderboard.Size = new System.Drawing.Size(464, 475);
             this.dgvLeaderboard.TabIndex = 2;
             // 
@@ -551,7 +557,6 @@
         private System.Windows.Forms.Label lblQuestion;
         private System.Windows.Forms.Label lblQuestionCount;
         private System.Windows.Forms.Label lblElapsedTime;
-        private System.Windows.Forms.Label lblPiPoints;
         private System.Windows.Forms.Button btnOptionOne;
         private System.Windows.Forms.Button btnOptionFour;
         private System.Windows.Forms.Button btnOptionThree;
@@ -571,6 +576,7 @@
         private System.Windows.Forms.FlowLayoutPanel flwStatsValues;
         private System.Windows.Forms.Timer tmrQuestion;
         private System.Windows.Forms.Button btnInstructions;
+        private System.Windows.Forms.Label lblPiPoints;
     }
 }
 

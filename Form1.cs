@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/// PLEASE NOTE: when running the program, always use the executable because the csv files get automatically reset when rebuilding.
+
 namespace MathBlitz
 {
     public partial class frmMain : Form
@@ -18,7 +20,6 @@ namespace MathBlitz
         string playerName = "";
 
         // past player scores
-        string playerScoresPath = Path.Combine(Application.StartupPath, "player_scores.csv");
         List<PlayerScore> playerScores = new List<PlayerScore>();
 
         // question data related
@@ -62,6 +63,14 @@ namespace MathBlitz
         }
 
         /// <summary>
+        /// returns the players score path based on the selected level
+        /// </summary>
+        private string GetPlayerScoresPath()
+        {
+            return Path.Combine(Application.StartupPath, $"{selectedLevel.ToLower()}_player_scores.csv");
+        }
+
+        /// <summary>
         /// displays the leaderboard
         /// </summary>
         private void ShowLeaderboard()
@@ -91,15 +100,22 @@ namespace MathBlitz
 
             // highlighting the current score
             dgvLeaderboard.Rows[currentPlayerIndex].DefaultCellStyle.BackColor = blue;
+
+            // saving the score data
+            SaveScoreData();
         }
 
         private void SaveScoreData()
         {
-            using (StreamWriter sw = new StreamWriter(playerScoresPath, true))
+            string playerScoresPath = GetPlayerScoresPath();
+            if (File.Exists(playerScoresPath))
             {
-                foreach (PlayerScore player in playerScores)
+                using (StreamWriter sw = new StreamWriter(playerScoresPath, false))
                 {
-                    sw.WriteLine($"{player.Name}, {player.Score}");
+                    foreach (PlayerScore player in playerScores)
+                    {
+                        sw.WriteLine($"{player.Name}, {player.Score}");
+                    }
                 }
             }
         }
@@ -572,9 +588,18 @@ namespace MathBlitz
             {
                 playerName = nameInput;
 
-                // loading the quiz mode tab
-                ResetTabs();
-                tbcCore.TabPages.Add(tabQuizMode);
+                if (nameInput.Any(c => !Char.IsLetter(c)))
+                {
+                    MessageBox.Show("Your username can only contain letters without any whitespaces or special characters :)");
+                } else if (nameInput.Length > 30)
+                {
+                    MessageBox.Show("Your username can't have more than 30 characters!");
+                } else
+                {
+                    // loading the quiz mode tab
+                    ResetTabs();
+                    tbcCore.TabPages.Add(tabQuizMode);
+                }
             }
             else
             {
@@ -596,7 +621,7 @@ namespace MathBlitz
             lblAccuracy.Text = $"{Math.Round(accuracy * 100, 1)}%";
 
             // displaying score stats
-            LoadDataFile(playerScoresPath, "player-scores");
+            LoadDataFile(GetPlayerScoresPath(), "player-scores");
             playerScores.Add(new PlayerScore(playerName, piScore, 1)); // current player score is added to the list
             ShowLeaderboard();
         }
@@ -611,10 +636,13 @@ namespace MathBlitz
             piScore = 0;
             nTrueFalseAsked = 0; // the number of true false questions asked
             askedQuestionIds = new List<string>(); // emptying the asked questions list
+            correctAnswerCount = 0;
 
             ResetTabs();
             tbcCore.TabPages.Add(tabWelcome);
             txtUsername.Text = "";
+
+            playerScores = new List<PlayerScore>();
         }
 
         private void frmMain_Load(object sender, EventArgs e)

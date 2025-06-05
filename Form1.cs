@@ -475,7 +475,7 @@ namespace MathBlitz
         }
 
         /// <summary>
-        /// updates the pi score of the user depending on how correctly and fast they answer
+        /// updates the pi score of the user depending on how fast they answer
         /// </summary>
         private void UpdateScore()
         {

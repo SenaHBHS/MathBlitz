@@ -282,24 +282,50 @@ namespace MathBlitz
             {
                 selectedMultiChoiceList = grandmasterMultiChoiceList;
                 selectedTrueFalseList = grandmasterTrueFalseList;
-            } else if (level == "Veteran")
+            }
+            else if (level == "Veteran")
             {
                 selectedMultiChoiceList = veteranMultiChoiceList;
                 selectedTrueFalseList = veteranTrueFalseList;
-            } else
+            }
+            else
             {
                 selectedMultiChoiceList = rookieMultiChoiceList;
                 selectedTrueFalseList = rookieTrueFalseList;
             }
 
-            // updating these variables here prevents the possibility for infinite loops
-            questionsCount = Math.Min(questionsCount, selectedMultiChoiceList.Count + selectedTrueFalseList.Count);
-            trueFalseQuota = Math.Min(trueFalseQuota, selectedTrueFalseList.Count);
+            // making sure the question data exists or else crash the program
+            if (selectedMultiChoiceList.Count > 0 && selectedTrueFalseList.Count > 0)
+            {
+                // updating these variables here prevents the possibility for infinite loops
+                questionsCount = Math.Min(questionsCount, selectedMultiChoiceList.Count + selectedTrueFalseList.Count);
+                int remainingQuestions = questionsCount - selectedMultiChoiceList.Count; // the number of questions left after asking all the multi choice questions
 
-            // displaying the questions tab and starting the questions
-            ResetTabs();
-            tbcCore.TabPages.Add(tabQuestion);
-            LoadNewQuestion();
+                if (trueFalseQuota < remainingQuestions)
+                {
+                    trueFalseQuota = remainingQuestions;
+                }
+                else
+                {
+                    trueFalseQuota = Math.Min(trueFalseQuota, selectedTrueFalseList.Count);
+                }
+
+                // displaying the questions tab and starting the questions
+                ResetTabs();
+                tbcCore.TabPages.Add(tabQuestion);
+                LoadNewQuestion();
+            }
+            else
+            {
+                MessageBox.Show(
+                    $"Questions data couldn't be found! Make sure the following files exist and aren't empty:\n{mcqFilePath}\n{tfqFilePath}",
+                    "Data Loading Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+
+                Application.Exit();
+            }
         }
 
         /// <summary>
@@ -408,56 +434,49 @@ namespace MathBlitz
             int newQuestionType; // 0 - true false question, 1 - multi choice question
 
             // randomly choosing the newQuestionType
-            if (nTrueFalseAsked < trueFalseQuota)
+            if (nTrueFalseAsked >= trueFalseQuota)
+            {
+                newQuestionType = 1;
+            }
+            else if (askedQuestionIds.Count - nTrueFalseAsked < selectedMultiChoiceList.Count)
             {
                 newQuestionType = rand.Next(2);
             }
             else
             {
-                newQuestionType = 1;
+                newQuestionType = 0;
             }
 
             // loading a question from the chosen question type
             if (newQuestionType == 0)
             {
                 // loading a new true false question
-                int newQuestionIndex = rand.Next(selectedTrueFalseList.Count);
-                TrueFalse newQuestion = selectedTrueFalseList[newQuestionIndex];
-                string newQuestionId = newQuestion.Id;
+                List<TrueFalse> unaskedQuestions = selectedTrueFalseList.Where(q => !askedQuestionIds.Contains(q.Id)).ToList();
+                TrueFalse newQuestion = unaskedQuestions[rand.Next(unaskedQuestions.Count)];
 
-                while (askedQuestionIds.Contains(newQuestionId))
-                {
-                    newQuestionIndex = rand.Next(selectedTrueFalseList.Count);
-                    newQuestion = selectedTrueFalseList[newQuestionIndex];
-                    newQuestionId = newQuestion.Id;
-                }
-
-                currentQuestionType = "true-false";
                 currentTrueFalseQuestion = newQuestion;
-                askedQuestionIds.Add(newQuestionId);
+                currentQuestionType = "true-false";
+                askedQuestionIds.Add(newQuestion.Id);
+                nTrueFalseAsked += 1;
             }
             else
             {
-                int newQuestionIndex = rand.Next(selectedMultiChoiceList.Count);
-                MultiChoice newQuestion = selectedMultiChoiceList[newQuestionIndex];
-                string newQuestionId = newQuestion.Id;
+                // loading a new multi choice question
+                List<MultiChoice> unaskedQuestions = selectedMultiChoiceList.Where(q => !askedQuestionIds.Contains(q.Id)).ToList();
+                MultiChoice newQuestion = unaskedQuestions[rand.Next(unaskedQuestions.Count)];
 
-                while (askedQuestionIds.Contains(newQuestionId))
-                {
-                    newQuestionIndex = rand.Next(selectedMultiChoiceList.Count);
-                    newQuestion = selectedMultiChoiceList[newQuestionIndex];
-                    newQuestionId = newQuestion.Id;
-                }
-
-                currentQuestionType = "multi-choice";
                 currentMultiChoiceQuestion = newQuestion;
-                askedQuestionIds.Add(newQuestionId);
+                currentQuestionType = "multi-choice";
+                askedQuestionIds.Add(newQuestion.Id);
             }
 
             // setting up the UI and displaying the quesiton
             SetUpQuestionUI();
         }
 
+        /// <summary>
+        /// updates the pi score of the user depending on how fast they answer
+        /// </summary>
         private void UpdateScore()
         {
             int baseScore;

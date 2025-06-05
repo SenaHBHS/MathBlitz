@@ -307,9 +307,9 @@
             // btnContinue
             // 
             this.btnContinue.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(167)))), ((int)(((byte)(226)))), ((int)(((byte)(235)))));
-            this.btnContinue.Location = new System.Drawing.Point(142, 463);
+            this.btnContinue.Location = new System.Drawing.Point(142, 446);
             this.btnContinue.Name = "btnContinue";
-            this.btnContinue.Size = new System.Drawing.Size(773, 34);
+            this.btnContinue.Size = new System.Drawing.Size(773, 51);
             this.btnContinue.TabIndex = 9;
             this.btnContinue.Text = "Continue";
             this.btnContinue.UseVisualStyleBackColor = false;

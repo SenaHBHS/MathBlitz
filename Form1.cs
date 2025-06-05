@@ -27,6 +27,7 @@ namespace MathBlitz
         string tfqFilePath = Path.Combine(Application.StartupPath, "math_blitz_true_false.csv"); // path to true false questions
         int baseFieldsNumber = 6; // the number of fields in the true false questions csv
         int mcqOptionsCount = 4; // the number of options each MCQ has. this is added to the baseFieldsNumber to get the total MCQ fields count
+
         // loaded multi choice questions by level
         List<MultiChoice> rookieMultiChoiceList = new List<MultiChoice>();
         List<MultiChoice> veteranMultiChoiceList = new List<MultiChoice>();
@@ -180,17 +181,27 @@ namespace MathBlitz
                                             // extracting the options (assumes the options are the last few fields)
                                             Array.Copy(fields, baseFieldsNumber, options, 0, mcqOptionsCount);
 
-                                            // creating a new question entry
-                                            MultiChoice newMcQuestion = new MultiChoice(id, question, answer, timeLimit, score, level, options);
-                                            if (level == "Grandmaster")
+                                            // checking if the answer is in the options
+                                            if (options.Any(option => option == answer))
                                             {
-                                                grandmasterMultiChoiceList.Add(newMcQuestion);
-                                            } else if (level == "Veteran")
+                                                // creating a new question entry
+                                                MultiChoice newMcQuestion = new MultiChoice(id, question, answer, timeLimit, score, level, options);
+                                                if (level == "Grandmaster")
+                                                {
+                                                    grandmasterMultiChoiceList.Add(newMcQuestion);
+                                                }
+                                                else if (level == "Veteran")
+                                                {
+                                                    veteranMultiChoiceList.Add(newMcQuestion);
+                                                }
+                                                else
+                                                {
+                                                    rookieMultiChoiceList.Add(newMcQuestion);
+                                                }
+                                            }
+                                            else
                                             {
-                                                veteranMultiChoiceList.Add(newMcQuestion);
-                                            } else
-                                            {
-                                                rookieMultiChoiceList.Add(newMcQuestion);
+                                                LogError($"Line {lineNo} in {filePath}: The given multi choice options don't contain the answer");
                                             }
                                         } else
                                         {
@@ -211,11 +222,11 @@ namespace MathBlitz
                                         }
                                     } else
                                     {
-                                        LogError($"Line {lineNo}: The score or the time is non-numerical");
+                                        LogError($"Line {lineNo} in {filePath}: The score or the time is non-numerical");
                                     }
                                 } else
                                 {
-                                    LogError($"Line {lineNo}: Missing necessary questions data fields");
+                                    LogError($"Line {lineNo} in {filePath}: Missing necessary questions data fields");
                                 }
                             } else if (loadDataType == "player-scores")
                             {
@@ -230,16 +241,16 @@ namespace MathBlitz
                                         playerScores.Add(newPlayerScore);
                                     } else
                                     {
-                                        LogError($"Line {lineNo}: The score is non-numerical");
+                                        LogError($"Line {lineNo} in {filePath}: The score is non-numerical");
                                     }
                                 } else
                                 {
-                                    LogError($"Line {lineNo}: Missing necessary questions data fields");
+                                    LogError($"Line {lineNo} in {filePath}: Missing necessary questions data fields");
                                 }
                             }
                         } else
                         {
-                            LogError($"Line {lineNo}: Empty");
+                            LogError($"Line {lineNo} in {filePath}: Empty");
                         }
                     }
                 }

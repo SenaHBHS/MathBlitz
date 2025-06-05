@@ -11,11 +11,11 @@ namespace MathBlitz
         public TrueFalse(string id, string questionText, string answer, double timeLimit, int score, string level)
         {
             this.Id = id;
-            this.QuestionText = questionText;
-            this.Answer = answer;
+            this.QuestionText = ParseLoadedString(questionText);
+            this.Answer = ParseLoadedString(answer);
             this.TimeLimit = timeLimit;
             this.Score = score;
-            this.Level = level;
+            this.Level = ParseLoadedString(level);
         }
     }
 }

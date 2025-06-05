@@ -13,13 +13,13 @@ namespace MathBlitz
 
         public MultiChoice(string id, string questionText, string answer, double timeLimit, int score, string level, string[] options)
         {
-            this.Id = id;
-            this.QuestionText = questionText;
-            this.Answer = answer;
+            this.Id = ParseLoadedString(id);
+            this.QuestionText = ParseLoadedString(questionText);
+            this.Answer = ParseLoadedString(answer);
             this.TimeLimit = timeLimit;
             this.Score = score;
-            this.Level = level;
-            this.Options = options;
+            this.Level = ParseLoadedString(level);
+            this.Options = options.Select(option => ParseLoadedString(option)).ToArray();
             this.AnswerOptionNum = Array.IndexOf(options, answer) + 1;
         }
     }

@@ -133,6 +133,11 @@ namespace MathBlitz
                 {
                     sw.WriteLine($"{DateTime.Now}, {errorMessage}");
                 }
+            } else
+            {
+                var errorFile = File.Create(errorLogPath);
+                errorFile.Close();
+                LogError(errorMessage);
             }
         }
 
@@ -245,7 +250,7 @@ namespace MathBlitz
                                     }
                                 } else
                                 {
-                                    LogError($"Line {lineNo} in {filePath}: Missing necessary questions data fields");
+                                    LogError($"Line {lineNo} in {filePath}: Missing necessary player score data fields");
                                 }
                             }
                         } else

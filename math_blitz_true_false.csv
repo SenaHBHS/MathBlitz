@@ -1,30 +1,150 @@
-T1,"The derivative of x^3 is 3x^2.",True,0.5,1,Rookie
-T2,"The integral of 2x dx from 0 to 1 equals 1.",True,0.5,1,Rookie
-T3,"The limit as x approaches 0 of sin x / x equals 0.",False,0.5,1,Rookie
-T4,"The derivative of e^x is e^x.",True,0.5,1,Rookie
-T5,"The derivative of ln x is 1/x.",True,0.5,1,Rookie
-T6,"The integral of 1/x dx is ln(x) + C.",True,0.5,1,Rookie
-T7,"The derivative of x^{-1} is -x^{-2}.",True,0.5,1,Rookie
-T8,"The derivative of 2^x is 2^x ln 2.",True,0.5,1,Rookie
-T9,"The limit as x→∞ of 1/x is 1.",False,0.5,1,Rookie
-T10,"The derivative of sin x is cos x.",True,0.5,1,Rookie
-T11,"The indefinite integral of cos x is -sin x + C.",False,0.75,2,Veteran
-T12,"The area under y=1 from x=0 to 5 is 5.",True,0.75,2,Veteran
-T13,"The derivative of arctan x is 1/(1+x^2).",True,0.75,2,Veteran
-T14,"The derivative of x^2 + 2x + 1 is 2x + 2.",True,0.75,2,Veteran
-T15,"The second derivative of x^3 is 6x.",True,0.75,2,Veteran
-T16,"The integral of 3x^2 dx is x^3 + C.",True,0.75,2,Veteran
-T17,"The derivative of ln(x^2) is 1/x.",False,0.75,2,Veteran
-T18,"The limit as h→0 of ((1+h)^2 - 1)/h is 2.",True,0.75,2,Veteran
-T19,"The derivative of |x| for x > 0 is 1.",True,0.75,2,Veteran
-T20,"The integral from 1 to 2 of x dx equals 2.",False,0.75,2,Veteran
-T21,"The derivative of tan x is sec^2 x.",True,1,3,Grandmaster
-T22,"The indefinite integral of sec^2 x is tan x + C.",True,1,3,Grandmaster
-T23,"The derivative of cos x is -sin x.",True,1,3,Grandmaster
-T24,"The derivative of a constant is zero.",True,1,3,Grandmaster
-T25,"The integral of 0 dx is 1 + C.",False,1,3,Grandmaster
-T26,"The limit as x→0 of (e^x - 1)/x equals 1.",True,1,3,Grandmaster
-T27,"The derivative of x^x at x=1 is 1.",True,1,3,Grandmaster
-T28,"The derivative of ln(sin x) is cos x / sin x.",True,1,3,Grandmaster
-T29,"The derivative of the inverse function f^{-1}(x) is 1/f'(x).",False,1,3,Grandmaster
-T30,"The derivative of √x is 1/(2√x).",True,1,3,Grandmaster
+T1,"The derivative of sin(x) is cos(x)",True,1,1,Rookie
+T2,"The integral of 1/x dx is ln|x| + C",True,2,2,Rookie
+T3,"The limit as x approaches 0 of (sin x)/x is 1",True,1,1,Rookie
+T4,"The function f(x) = x^3 is even",False,1,2,Rookie
+T5,"The second derivative of x^2 is 4",False,2,1,Rookie
+T6,"The matrix [[1,2],[3,4]] is symmetric",False,1,2,Rookie
+T7,"The real part of (2 + 3i) is 3",False,1,1,Rookie
+T8,"The series ∑_{n=1}^∞ 1/n diverges",True,2,2,Rookie
+T9,"e^(ln x) = x for x > 0",True,1,1,Rookie
+T10,"The function f(x)=|x| is differentiable at x=0",False,1,2,Rookie
+T11,"Any polynomial function is continuous everywhere",True,2,1,Rookie
+T12,"The derivative of e^x is e^x",True,1,2,Rookie
+T13,"The derivative of a constant function is the function itself",False,1,1,Rookie
+T14,"The integral of cos(x) dx is sin(x) + C",True,2,2,Rookie
+T15,"The determinant of a 2×2 matrix [[a,b],[c,d]] is ad - bc",True,1,1,Rookie
+T16,"The function f(x) = 1/x is defined at x=0",False,1,2,Rookie
+T17,"Differentiable implies continuous at a point",True,2,1,Rookie
+T18,"The solutions to the equation x^2 + 1 = 0 are real numbers",False,1,2,Rookie
+T19,"The limit as x approaches infinity of 1/x is 0",True,1,1,Rookie
+T20,"The set of real numbers is countable",False,2,2,Rookie
+T21,"The vectors [1,0] and [0,1] in ℝ^2 are linearly independent",True,1,1,Rookie
+T22,"The sum of two odd functions is an even function",False,1,2,Rookie
+T23,"The magnitude of a complex number a+bi is √(a^2 + b^2)",True,2,1,Rookie
+T24,"Integration by parts is based on the product rule for differentiation",True,1,2,Rookie
+T25,"The Maclaurin series for e^x contains only odd powers of x",False,1,1,Rookie
+T26,"A function can have more than one derivative at a given point",False,2,2,Rookie
+T27,"The graph of y = e^{-x} decays as x increases",True,1,1,Rookie
+T28,"A square matrix must be invertible",False,1,2,Rookie
+T29,"The basis of the null space of a matrix is unique",False,2,1,Rookie
+T30,"The cross product is defined in ℝ^3",True,1,2,Rookie
+T31,"The dot product of perpendicular vectors is zero",True,1,1,Rookie
+T32,"The eigenvalues of a real symmetric matrix are always real",True,2,2,Rookie
+T33,"Any invertible matrix has a determinant equal to zero",False,1,1,Rookie
+T34,"The sequence a_n = (1 + 1/n)^n converges to e",True,1,2,Rookie
+T35,"The derivative of tan(x) is sec^2(x)",True,2,1,Rookie
+T36,"A function with a discontinuity cannot have an integral",False,1,2,Rookie
+T37,"The probability density function of a normal distribution integrates to 1",True,1,1,Rookie
+T38,"The Fourier series of an odd function contains only cosine terms",False,2,2,Rookie
+T39,"The set of all 2×2 matrices forms a vector space",True,1,1,Rookie
+T40,"The Laplace transform of 0 is 1",False,1,2,Rookie
+T41,"The inverse Laplace transform of 1/s is 1",True,2,1,Rookie
+T42,"The logistic function is defined as 1 / (1 + e^{-x})",True,1,2,Rookie
+T43,"The binomial theorem applies only to real exponents",False,1,1,Rookie
+T44,"Reordering positive series doesn't affect convergence",True,2,2,Rookie
+T45,"A Cauchy sequence in a complete metric space converges",True,1,1,Rookie
+T46,"det(AB) = det(A) + det(B)",False,1,2,Rookie
+T47,"Matrix multiplication is commutative",False,2,1,Rookie
+T48,"The gradient of a scalar field is a vector field",True,1,2,Rookie
+T49,"The curl of a gradient field is always zero",True,1,1,Rookie
+T50,"Green’s theorem links line and double integrals",True,2,2,Rookie
+T51,"The derivative of x^3 at x=2 is 12.",True,1,5,Veteran
+T52,"The integral of 1/x dx from 1 to e is 0.",False,2,6,Veteran
+T53,"The limit as x approaches 0 of (sin x)/x is 1.",True,1,4,Veteran
+T54,"The function f(x)=e^{-x} is increasing for all real x.",False,1,5,Veteran
+T55,"The function f(x)=x^4 has a local minimum at x=0.",True,2,7,Veteran
+T56,"The series Σ_{n=1}^∞ 1/n^2 converges.",True,1,6,Veteran
+T57,"The Taylor series of sin x at x=0 includes only odd powers of x.",True,1,5,Veteran
+T58,"The derivative of ln(x^2) is 1/x.",False,1,4,Veteran
+T59,"The indefinite integral of cos(2x) dx is (1/2) sin(2x) + C.",True,1,5,Veteran
+T60,"The area between f(x)=x and g(x)=x^2 from x=0 to 1 is 1/6.",True,2,6,Veteran
+T61,"The limit as x approaches infinity of (2x^2 + 3)/(x^2 - 1) is 3.",False,1,5,Veteran
+T62,"The differential equation dy/dx = 3x^2 has general solution y = x^3 + C.",True,1,5,Veteran
+T63,"The derivative of arctan x is 1/(1 + x^2).",True,1,4,Veteran
+T64,"The function f(x)=|x| is differentiable at x=0.",False,1,6,Veteran
+T65,"The integral from 0 to π of sin x dx is 2.",True,2,6,Veteran
+T66,"The Maclaurin series for e^x converges for all real x.",True,1,5,Veteran
+T67,"The series Σ_{n=0}^∞ x^n converges for |x|<1.",True,1,4,Veteran
+T68,"The second derivative test is inconclusive when f''(a)=0.",True,1,6,Veteran
+T69,"If f'(x)=0 for all x in an interval, then f is constant on that interval.",True,1,5,Veteran
+T70,"The function f(x)=x^3 - 3x has inflection points at x=±1.",False,2,7,Veteran
+T71,"The integral ∫ e^{2x} dx equals e^{2x} + C.",False,1,5,Veteran
+T72,"The derivative of f(x)=tan x is sec^2 x.",True,1,4,Veteran
+T73,"The improper integral ∫_{1}^{∞} 1/x dx converges.",False,1,6,Veteran
+T74,"The function f(x)=x^(1/3) has a vertical tangent at x=0.",True,1,5,Veteran
+T75,"The gradient vector of f(x,y)=x^2 + y^2 at (1,-1) is (2,-2).",True,2,6,Veteran
+T76,"Directional derivative is max in gradient direction",True,1,5,Veteran
+T77,"Continuity everywhere doesn't imply differentiability",False,1,7,Veteran
+T78,"The limit as x approaches 0 of (1 - cos x)/x^2 is 1/2.",True,1,5,Veteran
+T79,"The derivative of ln(sin x) is cot x.",True,1,4,Veteran
+T80,"The function f(x)=x e^{-x^2} has a local maximum at x=1/√2.",True,2,6,Veteran
+T81,"The integral ∫_{0}^{1} 4x^3 dx equals 1.",True,1,5,Veteran
+T82,"The derivative of arcsin x is 1/sqrt(1 - x^2).",True,1,4,Veteran
+T83,"The sequence a_n = n/(n+1) converges to 0 as n approaches infinity.",False,1,6,Veteran
+T84,"The radius of convergence of the power series Σ n! x^n is 0.",True,1,5,Veteran
+T85,"The derivative of f(x)=|x|^2 at x=0 is defined.",True,1,4,Veteran
+T86,"The integral ∫ sec^2 x dx is tan x + C.",True,1,5,Veteran
+T87,"The Maclaurin series for ln(1+x) has radius of convergence 1.",True,2,6,Veteran
+T88,"The derivative of x*sin x is x*cos x - sin x.",True,1,5,Veteran
+T89,"The function f(x,y)=xy is symmetric in x and y.",True,1,4,Veteran
+T90,"The Hessian matrix of f(x,y)=x^2 - y^2 is [[2,0],[0,-2]].",True,1,6,Veteran
+T91,"The gradient of f(x,y)=e^(xy) is (y e^(xy), x e^(xy)).",True,1,5,Veteran
+T92,"The critical points of f(x)=x^3 are at x=0, which is a saddle point.",False,2,7,Veteran
+T93,"The integral ∫_{0}^{π/2} cos^2 x dx equals π/4.",True,1,5,Veteran
+T94,"The limit as x approaches 0 of (e^x - 1 - x)/x^2 is 1/2.",True,1,5,Veteran
+T95,"The series Σ_{n=1}^∞ (-1)^{n+1}/n converges to ln 2.",True,1,4,Veteran
+T96,"The derivative of f(x)=x^x is x^x (ln x + 1).",True,1,5,Veteran
+T97,"The function f(x)=sin(x^2) has an elementary antiderivative.",False,1,6,Veteran
+T98,"The derivative of the function f(x)=cot x is -csc^2 x.",True,1,5,Veteran
+T99,"The series Σ_{n=1}^∞ 1/2^n converges to 1.",True,1,4,Veteran
+T100,"The derivative of f(x)=ln(x^2 + 1) is x/(x^2 + 1).",False,2,7,Veteran
+T101,"The derivative of ln(x^2 + 1) is (2x)/(x^2 + 1)",True,3,8,Grandmaster
+T102,"The function f(x) = x^3 - 3x + 2 has a local maximum at x = -1",True,3,9,Grandmaster
+T103,"The improper integral ∫_1^∞ (1/x^2) dx converges to 1",True,2,8,Grandmaster
+T104,"The limit as x approaches 0 of (tan x) / x equals 1",True,2,8,Grandmaster
+T105,"The series ∑_{n=1}^∞ 1/(n^2) converges",True,3,9,Grandmaster
+T106,"The series ∑_{n=1}^∞ (-1)^n / √n converges absolutely",False,4,10,Grandmaster
+T107,"The derivative of arctanh(x) is 1/(1 - x^2)",True,4,10,Grandmaster
+T108,"The equation y' + y = e^x has general solution y = Ce^{-x} + 1",False,5,12,Grandmaster
+T109,"The second derivative of f(x) = x^5 at x = 0 is 0",True,3,9,Grandmaster
+T110,"If f'(a) = 0 and f''(a) = 0, then x = a is an inflection point of f",False,4,11,Grandmaster
+T111,"The function f(x) = |x| is differentiable at x = 0",False,2,8,Grandmaster
+T112,"The function f(x) = x^(1/3) has a vertical tangent at x = 0",True,3,9,Grandmaster
+T113,"The integral ∫_{0}^{π} x sin(x) dx equals π",True,4,10,Grandmaster
+T114,"The area enclosed by one loop of the polar curve r = 2 cos(θ) is π/2",False,5,12,Grandmaster
+T115,"The solution to the differential equation dy/dx = k y is y = Ce^{kx}",True,3,8,Grandmaster
+T116,"The Maclaurin series for sin(x) contains only odd powers of x",True,2,8,Grandmaster
+T117,"The infinite Taylor series expansion of e^x centered at x = 1 converges for all real x",True,3,9,Grandmaster
+T118,"The matrix [[1, 2], [3, 4]] has eigenvalues 5 and -1",False,4,10,Grandmaster
+T119,"∫f = f(c)(b–a) for f continuous on [a,b]",True,5,11,Grandmaster
+T120,"P(-1 < Z < 1) ≈ 0.68 for standard normal Z",True,3,9,Grandmaster
+T121,"Mean of binomial is np, variance is np(1-p)",True,4,10,Grandmaster
+T122,"In hypothesis testing, a Type I error probability is denoted by alpha",False,3,9,Grandmaster
+T123,"The derivative of cos(x) is sin(x)",False,2,8,Grandmaster
+T124,"The function f(x) = x e^{-x} has a global maximum at x = 1",True,4,10,Grandmaster
+T125,"Logistic model equilibria are P = 0 and P = K",True,5,11,Grandmaster
+T126,"If the determinant of a 2×2 matrix is zero, the matrix is invertible",False,2,8,Grandmaster
+T127,"Tangents at t=0, π/2 of x=cos t, y=sin t meet at (1,0)",False,5,12,Grandmaster
+T128,"The series ∑_{n=1}^∞ (n!)/(n^n) converges",True,4,10,Grandmaster
+T129,"f(x)=x⁴−4x³+6x²−4x+1 has one real critical point",True,3,9,Grandmaster
+T130,"The complex number e^{iπ/2} equals i",True,2,8,Grandmaster
+T131,"The binomial coefficient C(n, k) satisfies C(n, k) = C(n, n - k)",True,2,8,Grandmaster
+T132,"If the sequence a_n = (1 + 1/n)^n, then lim_{n→∞} a_n = e",True,3,9,Grandmaster
+T133,"The function f(x) = x^2/(x^2 + 1) has a horizontal asymptote at y = 1 as x → ∞",True,3,9,Grandmaster
+T134,"The derivative of sec(x) is sec(x) tan(x)",True,2,8,Grandmaster
+T135,"Mutually exclusive: P(A or B) = P(A)+P(B)−P(A)P(B)?",False,4,10,Grandmaster
+T136,"Sample SD is an unbiased estimator of pop SD?",False,3,9,Grandmaster
+T137,"y'' + y = 0 ⇒ y = A cos(x) + B sin(x)",True,4,10,Grandmaster
+T138,"The integral ∫_0^1 x^x dx can be expressed in elementary functions",False,5,12,Grandmaster
+T139,"The Maclaurin series for ln(1 + x) converges absolutely at x = 1",False,4,10,Grandmaster
+T140,"For any invertible matrix A, (A^{-1})^{-1} = A",True,2,8,Grandmaster
+T141,"|u·v| ≤ ||u|| ||v|| by Cauchy–Schwarz inequality",True,3,9,Grandmaster
+T142,"In a Poisson distribution with mean λ, the variance is equal to λ",True,3,9,Grandmaster
+T143,"Known variance ⇒ use t-distribution for mean CI?",False,4,10,Grandmaster
+T144,"If f(x) = x^x, then its derivative f'(x) = x^x(ln(x) + 1)",True,4,10,Grandmaster
+T145,"Rotate y=√x, x∈[0,4] gives volume π×512/15?",False,5,12,Grandmaster
+T146,"A Markov chain is regular if some Pⁿ > 0 entrywise",True,4,10,Grandmaster
+T147,"(f⁻¹)'(b) = 1 / f'(a), where a = f⁻¹(b)",True,3,9,Grandmaster
+T148,"The Taylor series of cos(x) centered at x = π has only odd powers of (x - π)",False,4,10,Grandmaster
+T149,"The equation ln(x + 2) = 3 has solution x = e^3 - 2",True,3,9,Grandmaster
+T150,"a_{n+1} = (a_n + 2/a_n)/2 → √2 for a₁ > 0",True,4,10,Grandmaster

@@ -125,7 +125,7 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(409, 278);
+            this.lblUsername.Location = new System.Drawing.Point(489, 249);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(106, 23);
             this.lblUsername.TabIndex = 4;
@@ -146,7 +146,7 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(521, 275);
+            this.txtUsername.Location = new System.Drawing.Point(465, 275);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(154, 30);
             this.txtUsername.TabIndex = 2;
@@ -395,28 +395,30 @@
             this.flwStatsValues.Controls.Add(this.lblPiScore);
             this.flwStatsValues.Controls.Add(this.lblRank);
             this.flwStatsValues.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flwStatsValues.Location = new System.Drawing.Point(837, 261);
+            this.flwStatsValues.Location = new System.Drawing.Point(861, 256);
             this.flwStatsValues.Name = "flwStatsValues";
-            this.flwStatsValues.Size = new System.Drawing.Size(81, 62);
+            this.flwStatsValues.Size = new System.Drawing.Size(85, 70);
             this.flwStatsValues.TabIndex = 9;
             // 
             // lblPiScore
             // 
             this.lblPiScore.AutoSize = true;
+            this.lblPiScore.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPiScore.Location = new System.Drawing.Point(3, 5);
             this.lblPiScore.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.lblPiScore.Name = "lblPiScore";
-            this.lblPiScore.Size = new System.Drawing.Size(49, 23);
+            this.lblPiScore.Size = new System.Drawing.Size(63, 29);
             this.lblPiScore.TabIndex = 6;
             this.lblPiScore.Text = "100π";
             // 
             // lblRank
             // 
             this.lblRank.AutoSize = true;
-            this.lblRank.Location = new System.Drawing.Point(3, 33);
+            this.lblRank.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRank.Location = new System.Drawing.Point(3, 39);
             this.lblRank.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.lblRank.Name = "lblRank";
-            this.lblRank.Size = new System.Drawing.Size(32, 23);
+            this.lblRank.Size = new System.Drawing.Size(40, 29);
             this.lblRank.TabIndex = 7;
             this.lblRank.Text = "#2";
             // 
@@ -425,30 +427,30 @@
             this.flwStatsLabels.Controls.Add(this.lblTotalPiPoints);
             this.flwStatsLabels.Controls.Add(this.lblRankText);
             this.flwStatsLabels.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flwStatsLabels.Location = new System.Drawing.Point(692, 261);
+            this.flwStatsLabels.Location = new System.Drawing.Point(678, 256);
             this.flwStatsLabels.Name = "flwStatsLabels";
-            this.flwStatsLabels.Size = new System.Drawing.Size(139, 62);
+            this.flwStatsLabels.Size = new System.Drawing.Size(177, 70);
             this.flwStatsLabels.TabIndex = 8;
             // 
             // lblTotalPiPoints
             // 
             this.lblTotalPiPoints.AutoSize = true;
-            this.lblTotalPiPoints.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPiPoints.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPiPoints.Location = new System.Drawing.Point(3, 5);
             this.lblTotalPiPoints.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.lblTotalPiPoints.Name = "lblTotalPiPoints";
-            this.lblTotalPiPoints.Size = new System.Drawing.Size(130, 23);
+            this.lblTotalPiPoints.Size = new System.Drawing.Size(166, 29);
             this.lblTotalPiPoints.TabIndex = 4;
             this.lblTotalPiPoints.Text = "Total Pi Score:";
             // 
             // lblRankText
             // 
             this.lblRankText.AutoSize = true;
-            this.lblRankText.Font = new System.Drawing.Font("Bahnschrift", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRankText.Location = new System.Drawing.Point(3, 33);
+            this.lblRankText.Font = new System.Drawing.Font("Bahnschrift", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRankText.Location = new System.Drawing.Point(3, 39);
             this.lblRankText.Margin = new System.Windows.Forms.Padding(3, 5, 3, 0);
             this.lblRankText.Name = "lblRankText";
-            this.lblRankText.Size = new System.Drawing.Size(57, 23);
+            this.lblRankText.Size = new System.Drawing.Size(73, 29);
             this.lblRankText.TabIndex = 5;
             this.lblRankText.Text = "Rank:";
             // 
@@ -480,8 +482,8 @@
             // lblCongrats
             // 
             this.lblCongrats.AutoSize = true;
-            this.lblCongrats.Font = new System.Drawing.Font("Bahnschrift SemiBold", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCongrats.Location = new System.Drawing.Point(686, 28);
+            this.lblCongrats.Font = new System.Drawing.Font("Bahnschrift", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCongrats.Location = new System.Drawing.Point(688, 28);
             this.lblCongrats.Name = "lblCongrats";
             this.lblCongrats.Size = new System.Drawing.Size(228, 33);
             this.lblCongrats.TabIndex = 1;
@@ -490,10 +492,10 @@
             // lblAccuracy
             // 
             this.lblAccuracy.AutoSize = true;
-            this.lblAccuracy.Font = new System.Drawing.Font("Bahnschrift", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAccuracy.Location = new System.Drawing.Point(765, 71);
+            this.lblAccuracy.Font = new System.Drawing.Font("Bahnschrift", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAccuracy.Location = new System.Drawing.Point(749, 61);
             this.lblAccuracy.Name = "lblAccuracy";
-            this.lblAccuracy.Size = new System.Drawing.Size(70, 39);
+            this.lblAccuracy.Size = new System.Drawing.Size(106, 58);
             this.lblAccuracy.TabIndex = 0;
             this.lblAccuracy.Text = "96%";
             // 

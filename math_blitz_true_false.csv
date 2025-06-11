@@ -3,7 +3,7 @@ T2,"The integral of 1/x dx is ln|x| + C",True,2,2,Rookie
 T3,"The limit as x approaches 0 of (sin x)/x is 1",True,1,1,Rookie
 T4,"The function f(x) = x^3 is even",False,1,2,Rookie
 T5,"The second derivative of x^2 is 4",False,2,1,Rookie
-T6,"The matrix [[1,2],[3,4]] is symmetric",False,1,2,Rookie
+T6,"The matrix [[1 2] [3 4]] is symmetric",False,1,2,Rookie
 T7,"The real part of (2 + 3i) is 3",False,1,1,Rookie
 T8,"The series ∑_{n=1}^∞ 1/n diverges",True,2,2,Rookie
 T9,"e^(ln x) = x for x > 0",True,1,1,Rookie
@@ -12,13 +12,13 @@ T11,"Any polynomial function is continuous everywhere",True,2,1,Rookie
 T12,"The derivative of e^x is e^x",True,1,2,Rookie
 T13,"The derivative of a constant function is the function itself",False,1,1,Rookie
 T14,"The integral of cos(x) dx is sin(x) + C",True,2,2,Rookie
-T15,"The determinant of a 2×2 matrix [[a,b],[c,d]] is ad - bc",True,1,1,Rookie
+T15,"The determinant of a 2×2 matrix [[a b] [c d]] is ad - bc",True,1,1,Rookie
 T16,"The function f(x) = 1/x is defined at x=0",False,1,2,Rookie
 T17,"Differentiable implies continuous at a point",True,2,1,Rookie
 T18,"The solutions to the equation x^2 + 1 = 0 are real numbers",False,1,2,Rookie
 T19,"The limit as x approaches infinity of 1/x is 0",True,1,1,Rookie
 T20,"The set of real numbers is countable",False,2,2,Rookie
-T21,"The vectors [1,0] and [0,1] in ℝ^2 are linearly independent",True,1,1,Rookie
+T21,"The vectors [1 0] and [0 1] in ℝ^2 are linearly independent",True,1,1,Rookie
 T22,"The sum of two odd functions is an even function",False,1,2,Rookie
 T23,"The magnitude of a complex number a+bi is √(a^2 + b^2)",True,2,1,Rookie
 T24,"Integration by parts is based on the product rule for differentiation",True,1,2,Rookie
@@ -66,13 +66,13 @@ T65,"The integral from 0 to π of sin x dx is 2.",True,2,6,Veteran
 T66,"The Maclaurin series for e^x converges for all real x.",True,1,5,Veteran
 T67,"The series Σ_{n=0}^∞ x^n converges for |x|<1.",True,1,4,Veteran
 T68,"The second derivative test is inconclusive when f''(a)=0.",True,1,6,Veteran
-T69,"If f'(x)=0 for all x in an interval, then f is constant on that interval.",True,1,5,Veteran
+T69,"If f'(x)=0 for all x in an interval then f is constant on that interval.",True,1,5,Veteran
 T70,"The function f(x)=x^3 - 3x has inflection points at x=±1.",False,2,7,Veteran
 T71,"The integral ∫ e^{2x} dx equals e^{2x} + C.",False,1,5,Veteran
 T72,"The derivative of f(x)=tan x is sec^2 x.",True,1,4,Veteran
 T73,"The improper integral ∫_{1}^{∞} 1/x dx converges.",False,1,6,Veteran
 T74,"The function f(x)=x^(1/3) has a vertical tangent at x=0.",True,1,5,Veteran
-T75,"The gradient vector of f(x,y)=x^2 + y^2 at (1,-1) is (2,-2).",True,2,6,Veteran
+T75,"The gradient vector of f(x y)=x^2 + y^2 at (1 -1) is (2 -2).",True,2,6,Veteran
 T76,"Directional derivative is max in gradient direction",True,1,5,Veteran
 T77,"Continuity everywhere doesn't imply differentiability",False,1,7,Veteran
 T78,"The limit as x approaches 0 of (1 - cos x)/x^2 is 1/2.",True,1,5,Veteran
@@ -86,10 +86,10 @@ T85,"The derivative of f(x)=|x|^2 at x=0 is defined.",True,1,4,Veteran
 T86,"The integral ∫ sec^2 x dx is tan x + C.",True,1,5,Veteran
 T87,"The Maclaurin series for ln(1+x) has radius of convergence 1.",True,2,6,Veteran
 T88,"The derivative of x*sin x is x*cos x - sin x.",True,1,5,Veteran
-T89,"The function f(x,y)=xy is symmetric in x and y.",True,1,4,Veteran
-T90,"The Hessian matrix of f(x,y)=x^2 - y^2 is [[2,0],[0,-2]].",True,1,6,Veteran
-T91,"The gradient of f(x,y)=e^(xy) is (y e^(xy), x e^(xy)).",True,1,5,Veteran
-T92,"The critical points of f(x)=x^3 are at x=0, which is a saddle point.",False,2,7,Veteran
+T89,"The function f(x y)=xy is symmetric in x and y.",True,1,4,Veteran
+T90,"The Hessian matrix of f(x y)=x^2 - y^2 is [[2 0] [0 -2]].",True,1,6,Veteran
+T91,"The gradient of f(x y)=e^(xy) is (y e^(xy)   x e^(xy)).",True,1,5,Veteran
+T92,"The critical points of f(x)=x^3 are at x=0 which is a saddle point.",False,2,7,Veteran
 T93,"The integral ∫_{0}^{π/2} cos^2 x dx equals π/4.",True,1,5,Veteran
 T94,"The limit as x approaches 0 of (e^x - 1 - x)/x^2 is 1/2.",True,1,5,Veteran
 T95,"The series Σ_{n=1}^∞ (-1)^{n+1}/n converges to ln 2.",True,1,4,Veteran
@@ -107,7 +107,7 @@ T106,"The series ∑_{n=1}^∞ (-1)^n / √n converges absolutely",False,4,10,Gr
 T107,"The derivative of arctanh(x) is 1/(1 - x^2)",True,4,10,Grandmaster
 T108,"The equation y' + y = e^x has general solution y = Ce^{-x} + 1",False,5,12,Grandmaster
 T109,"The second derivative of f(x) = x^5 at x = 0 is 0",True,3,9,Grandmaster
-T110,"If f'(a) = 0 and f''(a) = 0, then x = a is an inflection point of f",False,4,11,Grandmaster
+T110,"If f'(a) = 0 and f''(a) = 0 then x = a is an inflection point of f",False,4,11,Grandmaster
 T111,"The function f(x) = |x| is differentiable at x = 0",False,2,8,Grandmaster
 T112,"The function f(x) = x^(1/3) has a vertical tangent at x = 0",True,3,9,Grandmaster
 T113,"The integral ∫_{0}^{π} x sin(x) dx equals π",True,4,10,Grandmaster
@@ -115,21 +115,21 @@ T114,"The area enclosed by one loop of the polar curve r = 2 cos(θ) is π/2",Fa
 T115,"The solution to the differential equation dy/dx = k y is y = Ce^{kx}",True,3,8,Grandmaster
 T116,"The Maclaurin series for sin(x) contains only odd powers of x",True,2,8,Grandmaster
 T117,"The infinite Taylor series expansion of e^x centered at x = 1 converges for all real x",True,3,9,Grandmaster
-T118,"The matrix [[1, 2], [3, 4]] has eigenvalues 5 and -1",False,4,10,Grandmaster
-T119,"∫f = f(c)(b–a) for f continuous on [a,b]",True,5,11,Grandmaster
+T118,"The matrix [[1 2] [3 4]] has eigenvalues 5 and -1",False,4,10,Grandmaster
+T119,"∫f = f(c)(b–a) for f continuous on [a to b]",True,5,11,Grandmaster
 T120,"P(-1 < Z < 1) ≈ 0.68 for standard normal Z",True,3,9,Grandmaster
-T121,"Mean of binomial is np, variance is np(1-p)",True,4,10,Grandmaster
-T122,"In hypothesis testing, a Type I error probability is denoted by alpha",False,3,9,Grandmaster
+T121,"Mean of binomial is np variance is np(1-p)",True,4,10,Grandmaster
+T122,"In hypothesis testing a Type I error probability is denoted by alpha",False,3,9,Grandmaster
 T123,"The derivative of cos(x) is sin(x)",False,2,8,Grandmaster
 T124,"The function f(x) = x e^{-x} has a global maximum at x = 1",True,4,10,Grandmaster
 T125,"Logistic model equilibria are P = 0 and P = K",True,5,11,Grandmaster
-T126,"If the determinant of a 2×2 matrix is zero, the matrix is invertible",False,2,8,Grandmaster
-T127,"Tangents at t=0, π/2 of x=cos t, y=sin t meet at (1,0)",False,5,12,Grandmaster
+T126,"If the determinant of a 2×2 matrix is zero the matrix is invertible",False,2,8,Grandmaster
+T127,"Tangents at t=0 & π/2 of x=cos t & y=sin t meet at x=1 & y=0",False,5,12,Grandmaster
 T128,"The series ∑_{n=1}^∞ (n!)/(n^n) converges",True,4,10,Grandmaster
 T129,"f(x)=x⁴−4x³+6x²−4x+1 has one real critical point",True,3,9,Grandmaster
 T130,"The complex number e^{iπ/2} equals i",True,2,8,Grandmaster
-T131,"The binomial coefficient C(n, k) satisfies C(n, k) = C(n, n - k)",True,2,8,Grandmaster
-T132,"If the sequence a_n = (1 + 1/n)^n, then lim_{n→∞} a_n = e",True,3,9,Grandmaster
+T131,"The binomial coefficient C(n   k) satisfies C(n  k) = C(n   n - k)",True,2,8,Grandmaster
+T132,"If the sequence a_n = (1 + 1/n)^n then lim_{n→∞} a_n = e",True,3,9,Grandmaster
 T133,"The function f(x) = x^2/(x^2 + 1) has a horizontal asymptote at y = 1 as x → ∞",True,3,9,Grandmaster
 T134,"The derivative of sec(x) is sec(x) tan(x)",True,2,8,Grandmaster
 T135,"Mutually exclusive: P(A or B) = P(A)+P(B)−P(A)P(B)?",False,4,10,Grandmaster
@@ -137,14 +137,13 @@ T136,"Sample SD is an unbiased estimator of pop SD?",False,3,9,Grandmaster
 T137,"y'' + y = 0 ⇒ y = A cos(x) + B sin(x)",True,4,10,Grandmaster
 T138,"The integral ∫_0^1 x^x dx can be expressed in elementary functions",False,5,12,Grandmaster
 T139,"The Maclaurin series for ln(1 + x) converges absolutely at x = 1",False,4,10,Grandmaster
-T140,"For any invertible matrix A, (A^{-1})^{-1} = A",True,2,8,Grandmaster
+T140,"For any invertible matrix A (A^{-1})^{-1} = A",True,2,8,Grandmaster
 T141,"|u·v| ≤ ||u|| ||v|| by Cauchy–Schwarz inequality",True,3,9,Grandmaster
-T142,"In a Poisson distribution with mean λ, the variance is equal to λ",True,3,9,Grandmaster
+T142,"In a Poisson distribution with mean λ the variance is equal to λ",True,3,9,Grandmaster
 T143,"Known variance ⇒ use t-distribution for mean CI?",False,4,10,Grandmaster
-T144,"If f(x) = x^x, then its derivative f'(x) = x^x(ln(x) + 1)",True,4,10,Grandmaster
-T145,"Rotate y=√x, x∈[0,4] gives volume π×512/15?",False,5,12,Grandmaster
-T146,"A Markov chain is regular if some Pⁿ > 0 entrywise",True,4,10,Grandmaster
-T147,"(f⁻¹)'(b) = 1 / f'(a), where a = f⁻¹(b)",True,3,9,Grandmaster
-T148,"The Taylor series of cos(x) centered at x = π has only odd powers of (x - π)",False,4,10,Grandmaster
-T149,"The equation ln(x + 2) = 3 has solution x = e^3 - 2",True,3,9,Grandmaster
-T150,"a_{n+1} = (a_n + 2/a_n)/2 → √2 for a₁ > 0",True,4,10,Grandmaster
+T144,"If f(x) = x^x then its derivative f'(x) = x^x(ln(x) + 1)",True,4,10,Grandmaster
+T145,"A Markov chain is regular if some Pⁿ > 0 entrywise",True,4,10,Grandmaster
+T146,"(f⁻¹)'(b) = 1 / f'(a) where a = f⁻¹(b)",True,3,9,Grandmaster
+T147,"The Taylor series of cos(x) centered at x = π has only odd powers of (x - π)",False,4,10,Grandmaster
+T148,"The equation ln(x + 2) = 3 has solution x = e^3 - 2",True,3,9,Grandmaster
+T149,"a_{n+1} = (a_n + 2/a_n)/2 → √2 for a₁ > 0",True,4,10,Grandmaster

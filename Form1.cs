@@ -180,62 +180,67 @@ namespace MathBlitz
                                     string level = fields[5];
                                     if (isTimeNumeric && isScoreNumeric)
                                     {
+                                        bool invalidScoreOrTime = false;
                                         if (score < 1 || score > 15)
                                         {
                                             LogError($"Line {lineNo} in {filePath}: The score {score} has to be within the range 1-15");
+                                            invalidScoreOrTime = true;
                                         }
-                                        else if (timeLimit < 1 || timeLimit > 10)
+                                        if (timeLimit < 1 || timeLimit > 10)
                                         {
                                             LogError($"Line {lineNo} in {filePath}: The time limit {timeLimit} has to be within the range 1-10");
+                                            invalidScoreOrTime = true;
                                         }
-                                        else
+                                        if (invalidScoreOrTime)
                                         {
-                                            if (loadDataType == "multi-choice-questions")
-                                            {
-                                                // id,question,answer,time_limit,score,level,option_1,option_2,option_3,option_4
-                                                string[] options = new string[mcqOptionsCount];
-                                                // extracting the options (assumes the options are the last few fields)
-                                                Array.Copy(fields, baseFieldsNumber, options, 0, mcqOptionsCount);
+                                            continue;
+                                        }
 
-                                                // checking if the answer is in the options
-                                                if (options.Any(option => option == answer))
+                                        if (loadDataType == "multi-choice-questions")
+                                        {
+                                            // id,question,answer,time_limit,score,level,option_1,option_2,option_3,option_4
+                                            string[] options = new string[mcqOptionsCount];
+                                            // extracting the options (assumes the options are the last few fields)
+                                            Array.Copy(fields, baseFieldsNumber, options, 0, mcqOptionsCount);
+
+                                            // checking if the answer is in the options
+                                            if (options.Any(option => option == answer))
+                                            {
+                                                // creating a new question entry
+                                                MultiChoice newMcQuestion = new MultiChoice(id, question, answer, timeLimit, score, level, options);
+                                                if (level == "Grandmaster")
                                                 {
-                                                    // creating a new question entry
-                                                    MultiChoice newMcQuestion = new MultiChoice(id, question, answer, timeLimit, score, level, options);
-                                                    if (level == "Grandmaster")
-                                                    {
-                                                        grandmasterMultiChoiceList.Add(newMcQuestion);
-                                                    }
-                                                    else if (level == "Veteran")
-                                                    {
-                                                        veteranMultiChoiceList.Add(newMcQuestion);
-                                                    }
-                                                    else
-                                                    {
-                                                        rookieMultiChoiceList.Add(newMcQuestion);
-                                                    }
+                                                    grandmasterMultiChoiceList.Add(newMcQuestion);
+                                                }
+                                                else if (level == "Veteran")
+                                                {
+                                                    veteranMultiChoiceList.Add(newMcQuestion);
                                                 }
                                                 else
                                                 {
-                                                    LogError($"Line {lineNo} in {filePath}: The given multi choice options don't contain the answer");
+                                                    rookieMultiChoiceList.Add(newMcQuestion);
                                                 }
                                             }
                                             else
                                             {
-                                                // id,question,answer,time_limit,score,level
-                                                TrueFalse newTrueFalseQuestion = new TrueFalse(id, question, answer, timeLimit, score, level);
-                                                if (level == "Grandmaster")
-                                                {
-                                                    grandmasterTrueFalseList.Add(newTrueFalseQuestion);
-                                                }
-                                                else if (level == "Veteran")
-                                                {
-                                                    veteranTrueFalseList.Add(newTrueFalseQuestion);
-                                                }
-                                                else
-                                                {
-                                                    rookieTrueFalseList.Add(newTrueFalseQuestion);
-                                                }
+                                                LogError($"Line {lineNo} in {filePath}: The given multi choice options don't contain the answer");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            // id,question,answer,time_limit,score,level
+                                            TrueFalse newTrueFalseQuestion = new TrueFalse(id, question, answer, timeLimit, score, level);
+                                            if (level == "Grandmaster")
+                                            {
+                                                grandmasterTrueFalseList.Add(newTrueFalseQuestion);
+                                            }
+                                            else if (level == "Veteran")
+                                            {
+                                                veteranTrueFalseList.Add(newTrueFalseQuestion);
+                                            }
+                                            else
+                                            {
+                                                rookieTrueFalseList.Add(newTrueFalseQuestion);
                                             }
                                         }
                                     } else

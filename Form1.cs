@@ -57,6 +57,7 @@ namespace MathBlitz
         Color red = ColorTranslator.FromHtml("#FC9B93");
         Color green = ColorTranslator.FromHtml("#B8F2E6");
         Color blue = ColorTranslator.FromHtml("#A7E2EB");
+        Color textColor = ColorTranslator.FromHtml("#072538");
 
         public frmMain()
         {
@@ -179,50 +180,62 @@ namespace MathBlitz
                                     string level = fields[5];
                                     if (isTimeNumeric && isScoreNumeric)
                                     {
-                                        if (loadDataType == "multi-choice-questions")
+                                        if (score < 1 || score > 15)
                                         {
-                                            // id,question,answer,time_limit,score,level,option_1,option_2,option_3,option_4
-                                            string[] options = new string[mcqOptionsCount];
-                                            // extracting the options (assumes the options are the last few fields)
-                                            Array.Copy(fields, baseFieldsNumber, options, 0, mcqOptionsCount);
-
-                                            // checking if the answer is in the options
-                                            if (options.Any(option => option == answer))
+                                            LogError($"Line {lineNo} in {filePath}: The score {score} has to be within the range 1-15");
+                                        }
+                                        else if (timeLimit < 1 || timeLimit > 10)
+                                        {
+                                            LogError($"Line {lineNo} in {filePath}: The time limit {timeLimit} has to be within the range 1-10");
+                                        }
+                                        else
+                                        {
+                                            if (loadDataType == "multi-choice-questions")
                                             {
-                                                // creating a new question entry
-                                                MultiChoice newMcQuestion = new MultiChoice(id, question, answer, timeLimit, score, level, options);
-                                                if (level == "Grandmaster")
+                                                // id,question,answer,time_limit,score,level,option_1,option_2,option_3,option_4
+                                                string[] options = new string[mcqOptionsCount];
+                                                // extracting the options (assumes the options are the last few fields)
+                                                Array.Copy(fields, baseFieldsNumber, options, 0, mcqOptionsCount);
+
+                                                // checking if the answer is in the options
+                                                if (options.Any(option => option == answer))
                                                 {
-                                                    grandmasterMultiChoiceList.Add(newMcQuestion);
-                                                }
-                                                else if (level == "Veteran")
-                                                {
-                                                    veteranMultiChoiceList.Add(newMcQuestion);
+                                                    // creating a new question entry
+                                                    MultiChoice newMcQuestion = new MultiChoice(id, question, answer, timeLimit, score, level, options);
+                                                    if (level == "Grandmaster")
+                                                    {
+                                                        grandmasterMultiChoiceList.Add(newMcQuestion);
+                                                    }
+                                                    else if (level == "Veteran")
+                                                    {
+                                                        veteranMultiChoiceList.Add(newMcQuestion);
+                                                    }
+                                                    else
+                                                    {
+                                                        rookieMultiChoiceList.Add(newMcQuestion);
+                                                    }
                                                 }
                                                 else
                                                 {
-                                                    rookieMultiChoiceList.Add(newMcQuestion);
+                                                    LogError($"Line {lineNo} in {filePath}: The given multi choice options don't contain the answer");
                                                 }
                                             }
                                             else
                                             {
-                                                LogError($"Line {lineNo} in {filePath}: The given multi choice options don't contain the answer");
-                                            }
-                                        } else
-                                        {
-                                            // id,question,answer,time_limit,score,level
-                                            TrueFalse newTrueFalseQuestion = new TrueFalse(id, question, answer, timeLimit, score, level);
-                                            if (level == "Grandmaster")
-                                            {
-                                                grandmasterTrueFalseList.Add(newTrueFalseQuestion);
-                                            }
-                                            else if (level == "Veteran")
-                                            {
-                                                veteranTrueFalseList.Add(newTrueFalseQuestion);
-                                            }
-                                            else
-                                            {
-                                                rookieTrueFalseList.Add(newTrueFalseQuestion);
+                                                // id,question,answer,time_limit,score,level
+                                                TrueFalse newTrueFalseQuestion = new TrueFalse(id, question, answer, timeLimit, score, level);
+                                                if (level == "Grandmaster")
+                                                {
+                                                    grandmasterTrueFalseList.Add(newTrueFalseQuestion);
+                                                }
+                                                else if (level == "Veteran")
+                                                {
+                                                    veteranTrueFalseList.Add(newTrueFalseQuestion);
+                                                }
+                                                else
+                                                {
+                                                    rookieTrueFalseList.Add(newTrueFalseQuestion);
+                                                }
                                             }
                                         }
                                     } else
@@ -480,9 +493,9 @@ namespace MathBlitz
         }
 
         /// <summary>
-        /// updates the pi score of the user depending on how fast they answer
+        /// increases the pi score of the user depending on how fast they answer
         /// </summary>
-        private void UpdateScore()
+        private void IncreaseScore()
         {
             int baseScore;
             double questionTimeLimit;
@@ -504,6 +517,29 @@ namespace MathBlitz
                 double remainingTime = questionTimeLimit - elapsedSeconds;
                 double extraPoints = Math.Round((remainingTime / questionTimeLimit) * (baseScore * 4));
                 piScore += (int)extraPoints + baseScore;
+            }
+
+            lblPiPoints.Text = $"{piScore}π";
+        }
+
+        /// <summary>
+        /// decreases the pi score if the user gets the answer wrong
+        /// </summary>
+        private void DecreaseScore()
+        {
+            int baseScore;
+            if (currentQuestionType == "multi-choice")
+            {
+                baseScore = currentMultiChoiceQuestion.Score;
+            }
+            else
+            {
+                baseScore = currentTrueFalseQuestion.Score;
+            }
+
+            if (piScore > baseScore)
+            {
+                piScore -= baseScore;
             }
 
             lblPiPoints.Text = $"{piScore}π";
@@ -592,11 +628,12 @@ namespace MathBlitz
             
             if (selectedOption == correctOption)
             {
-                UpdateScore();
+                IncreaseScore();
                 correctAnswerCount += 1;
                 ColorOptionButton(selectedOption, green);
             } else
             {
+                DecreaseScore();
                 ColorOptionButton(selectedOption, red);
                 ColorOptionButton(correctOption, green);
             }
@@ -684,6 +721,10 @@ namespace MathBlitz
         {
             LoadDataFile(mcqFilePath, "multi-choice-questions");
             LoadDataFile(tfqFilePath, "true-false-questions");
+
+            // remove the datagrid view selection color
+            dgvLeaderboard.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+            dgvLeaderboard.DefaultCellStyle.SelectionForeColor = textColor;
 
             ResetTabs();
             tbcCore.TabPages.Add(tabWelcome);

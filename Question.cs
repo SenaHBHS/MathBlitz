@@ -15,6 +15,11 @@ namespace MathBlitz
         public int Score { get; set; }
         public string Level { get; set; }
 
+        /// <summary>
+        /// cleans a loaded strings by removing quoatation marks around it if they exist
+        /// </summary>
+        /// <param name="loadedString"></param>
+        /// <returns></returns>
         public string ParseLoadedString(string loadedString)
         {
             char first = loadedString[0];

@@ -10,6 +10,7 @@ namespace MathBlitz
     {
         public TrueFalse(string id, string questionText, string answer, double timeLimit, int score, string level)
         {
+            // constructing a true false question record
             this.Id = id;
             this.QuestionText = ParseLoadedString(questionText);
             this.Answer = ParseLoadedString(answer);

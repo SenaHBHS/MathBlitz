@@ -12,8 +12,8 @@ namespace MathBlitz
         public string QuestionText { get; set; }
         public string Answer { get; set; }
         public double TimeLimit { get; set; } // in minutes
-        public int Score { get; set; }
-        public string Level { get; set; }
+        public int Score { get; set; } // base pi score of the question
+        public string Level { get; set; } // the level of the question: grandmaster, veteran, rookie
 
         /// <summary>
         /// cleans a loaded strings by removing quoatation marks around it if they exist
